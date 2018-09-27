@@ -10,6 +10,7 @@ import uchicago.src.sim.gui.Value2DDisplay;
 import uchicago.src.sim.gui.Object2DDisplay;
 import uchicago.src.sim.engine.BasicAction;
 import uchicago.src.sim.util.SimUtilities;
+import uchicago.src.reflector.RangePropertyDescriptor;
 import uchicago.src.sim.analysis.DataSource;
 import uchicago.src.sim.analysis.OpenSequenceGraph;
 import uchicago.src.sim.analysis.Sequence;
@@ -99,6 +100,7 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	public void setup() {
 		// TODO Auto-generated method stub
 		System.out.println("Running setup");
@@ -125,6 +127,33 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 		// Register Displays
 		registerDisplaySurface("Rabbits Grass Model Window 1", displaySurf);
 		this.registerMediaProducer("Plot", amountOfRabbitsAndGrassInSpace);
+		
+		/*
+		modelManipulator.addButton("Clear Space", new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				space.clear();
+			}
+		});
+		
+		
+		modelManipulator.addSlider("NumAgents", 0, 100, 10, new SliderListener());
+		*/
+		
+		RangePropertyDescriptor numbeOfRabbits = new RangePropertyDescriptor("NumAgents", 10, 100, 20);
+		descriptors.put("NumAgents", numbeOfRabbits);
+		
+		RangePropertyDescriptor tresholdForBirth = new RangePropertyDescriptor("CostOfReproduction", 60, 80, 20);
+		descriptors.put("CostOfReproduction", tresholdForBirth);
+		
+		RangePropertyDescriptor rateGrassGrows = new RangePropertyDescriptor("GrassGrowthRate", 10, 100, 20);
+		descriptors.put("GrassGrowthRate", rateGrassGrows);
+		
+		RangePropertyDescriptor gridSizeX = new RangePropertyDescriptor("WorldXSize", 10, 100, 20);
+		descriptors.put("WorldXSize", gridSizeX);
+		
+		RangePropertyDescriptor gridSizeY = new RangePropertyDescriptor("WorldYSize", 10, 100, 20);
+		descriptors.put("WorldYSize", gridSizeY);
+		
 	}
 	
 
@@ -225,7 +254,7 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 	public String[] getInitParam() {
 		// TODO Auto-generated method stub
 		String[] initParams = { "NumAgents", "WorldXSize", "WorldYSize", "Grass", "AgentMinLifespan", "AgentMaxLifespan", "EnergyToReproduce", 
-				"CostOfReproduction", "EnergyInGrass" };
+				"CostOfReproduction", "EnergyInGrass" , "GrassGrowthRate" };
 	    return initParams;
 	}
 	
@@ -345,7 +374,7 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 	}
 
 	
-	public void getCostOfReproduction(int costOfReproduction) {
+	public void setCostOfReproduction(int costOfReproduction) {
 		this.costOfReproduction = costOfReproduction;
 	}
 	
