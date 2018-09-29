@@ -31,15 +31,15 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 	
 	// Default Values
 	private static final int NUMAGENTS = 10;
-	private static final int WORLDXSIZE = 50;
-	private static final int WORLDYSIZE = 50;
+	private static final int WORLDXSIZE = 20;
+	private static final int WORLDYSIZE = 20;
 	private static final int TOTALGRASS = 100;
 	private static final int AGENT_MIN_LIFESPAN = 30;
 	private static final int AGENT_MAX_LIFESPAN = 60;
 	private static final int AGENT_START_ENERGY = 50;
 	private static final int ENERGY_TO_REPRODUCE = 70;
 	private static final int COST_OF_REPRODUCTION = 30;
-	private static final int ENERGY_IN_GRASS = 20;
+	private static final int ENERGY_IN_GRASS = 10;
 	private static final int GRASS_GROWTH_RATE = 10;
 	private static final int COST_OF_MOVEMENT = 1;
 	
@@ -87,7 +87,6 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 		public double getSValue() {
 			return rgSpace.getTotalGrass();
 		}
-		
 	}
 
 	
@@ -102,7 +101,6 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 	
 	@SuppressWarnings("unchecked")
 	public void setup() {
-		// TODO Auto-generated method stub
 		System.out.println("Running setup");
 		rgSpace = null;
 		agentList = new ArrayList<RabbitsGrassSimulationAgent>();
@@ -128,17 +126,7 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 		registerDisplaySurface("Rabbits Grass Model Window 1", displaySurf);
 		this.registerMediaProducer("Plot", amountOfRabbitsAndGrassInSpace);
 		
-		/*
-		modelManipulator.addButton("Clear Space", new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				space.clear();
-			}
-		});
-		
-		
-		modelManipulator.addSlider("NumAgents", 0, 100, 10, new SliderListener());
-		*/
-		
+		// Create sliders
 		RangePropertyDescriptor numbeOfRabbits = new RangePropertyDescriptor("NumAgents", 10, 100, 20);
 		descriptors.put("NumAgents", numbeOfRabbits);
 		
@@ -158,7 +146,6 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 	
 
 	public void begin() {
-		// TODO Auto-generated method stub
 		buildModel();
 		buildSchedule();
 		buildDisplay();
@@ -253,8 +240,7 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 
 	public String[] getInitParam() {
 		// TODO Auto-generated method stub
-		String[] initParams = { "NumAgents", "WorldXSize", "WorldYSize", "Grass", "AgentMinLifespan", "AgentMaxLifespan", "EnergyToReproduce", 
-				"CostOfReproduction", "EnergyInGrass" , "GrassGrowthRate" };
+		String[] initParams = { "NumAgents", "WorldXSize", "WorldYSize", "CostOfReproduction", "GrassGrowthRate" };
 	    return initParams;
 	}
 	

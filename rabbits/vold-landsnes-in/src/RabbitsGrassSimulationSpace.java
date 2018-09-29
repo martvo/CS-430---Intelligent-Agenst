@@ -41,7 +41,8 @@ public class RabbitsGrassSimulationSpace {
 		    	
 		    	if (currentValue == 0) {
 		    		// Replace the Integer object with another one with the new value
-				    grassSpace.putObjectAt(x, y, new Integer(energyInGrass));
+		    		int grassMultiplyer = (int)((Math.random() * (3 - 1)) + 1);
+				    grassSpace.putObjectAt(x, y, new Integer(energyInGrass * grassMultiplyer));
 				    break;
 		    	}
 	    	}
