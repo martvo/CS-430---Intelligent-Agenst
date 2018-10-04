@@ -130,7 +130,7 @@ public class RabbitsGrassSimulationModel extends SimModelImpl {
 		RangePropertyDescriptor numbeOfRabbits = new RangePropertyDescriptor("NumAgents", 10, 100, 20);
 		descriptors.put("NumAgents", numbeOfRabbits);
 		
-		RangePropertyDescriptor tresholdForBirth = new RangePropertyDescriptor("CostOfReproduction", 60, 80, 20);
+		RangePropertyDescriptor tresholdForBirth = new RangePropertyDescriptor("CostOfReproduction", 10, 80, 20);
 		descriptors.put("CostOfReproduction", tresholdForBirth);
 		
 		RangePropertyDescriptor rateGrassGrows = new RangePropertyDescriptor("GrassGrowthRate", 10, 100, 20);
