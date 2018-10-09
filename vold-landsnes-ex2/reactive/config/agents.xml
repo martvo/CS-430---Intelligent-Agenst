@@ -2,18 +2,44 @@
 
 <agents>
 	<!-- A list of agents and their behavior classes -->
-  
-  <agent name="reactive-rla">
+
+  <agent name="reactive-random">
+    <set class-path="bin/"/>
+    <set class-name="template.ReactiveTemplate"/>
+    <set discount-factor=".85"/>
+  </agent>
+
+  <agent name="reactive-allwaysPickUp">
+    <set class-path="bin/"/>
+    <set class-name="template.ReactiveTemplate"/>
+    <set discount-factor="1.0"/>
+  </agent>
+	
+	<!-- #### REACTIVE AGENTS ### -->
+
+  <agent name="reactive-rla-0.99">
     <set class-path="bin/"/>
     <set class-name="template.ReactiveAgent"/>
     <set discount-factor="0.99"/>
   </agent>
-	
-	<!-- #### REACTIVE AGENTS ### -->
-	<agent name="reactive-random">
-		<set class-path="bin/"/>
-		<set class-name="template.ReactiveTemplate"/>
-		<set discount-factor=".85"/>
-	</agent>
+
+  <agent name="reactive-rla-0.01">
+    <set class-path="bin/"/>
+    <set class-name="template.ReactiveAgent"/>
+    <set discount-factor="0.01"/>
+  </agent>
+
+  <agent name="reactive-rla-0.8">
+    <set class-path="bin/"/>
+    <set class-name="template.ReactiveAgent"/>
+    <set discount-factor="0.8"/>
+  </agent>
+
+  <agent name="reactive-rla-0.5">
+    <set class-path="bin/"/>
+    <set class-name="template.ReactiveAgent"/>
+    <set discount-factor="0.5"/>
+  </agent>
+
 	
 </agents>

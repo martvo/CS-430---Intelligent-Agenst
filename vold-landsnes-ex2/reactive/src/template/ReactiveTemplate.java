@@ -46,7 +46,7 @@ public class ReactiveTemplate implements ReactiveBehavior {
 		}
 		
 		if (numActions >= 1) {
-			System.out.println("Random Agent");
+			System.out.println("Random Agent with chance of picking up a task = " + this.pPickup);
 			System.out.println("The total profit after "+numActions+" actions is "+myAgent.getTotalProfit()+" (average profit: "+(myAgent.getTotalProfit() / (double)numActions)+")");
 		}
 		numActions++;

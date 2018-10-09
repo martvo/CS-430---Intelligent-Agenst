@@ -18,6 +18,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 	
 	private int numActions;
 	private Agent myAgent;
+	private double discount;
 	
 	private HashMap<City, HashMap<City, State>> states; 
 	private HashMap<State, Double> values;  // This is the V(s) values
@@ -30,6 +31,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 		// If the property is not present it defaults to 0.95
 		Double discount = agent.readProperty("discount-factor", Double.class,
 				0.95);
+		this.discount = discount;
 		System.out.println("Discount factor is: " + discount);
 		System.out.println();
 		this.numActions = 0;
@@ -164,8 +166,8 @@ public class ReactiveAgent implements ReactiveBehavior {
 	// If the toCity variable is null it means that we are in a city and there is no task there for us
 	// If the toCity variable has a City object it means that the city we are in have a task for us to that city
 	public class State {
-		public City fromCity;  // task from a City fromCity
-		public City deliveryTo;  // task to a City toCity
+		public City fromCity;  // the city we are in
+		public City deliveryTo;  // city the task is to be delivered to
 		
 		public HashMap<City, Double> qValues = new HashMap<City, Double>();  // this is the Q(s,a) values for this state
 		public HashMap<City, Double> rewards = new HashMap<City, Double>();  // this is the R(s,a) values for this state
@@ -210,7 +212,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 			City bestActionForState = actions.get(states.get(currentCity).get(availableTask.deliveryCity));
 			
 			// Pick up task if the best action for the state is the same as the delivery city of the task and we have capasity for it
-			if (bestActionForState == availableTask.deliveryCity && availableTask.weight <= vehicle.capacity()) {
+			if (bestActionForState == availableTask.deliveryCity) {
 				action = new Pickup(availableTask);
 				System.out.println("Decided to take the task, going to: " + availableTask.deliveryCity + " to deliver");
 			} else {  // skip the task and try another city
@@ -219,7 +221,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 			}
 		}
 		if (numActions >= 1) {
-			System.out.println("Reactive Agent");
+			System.out.println("Reactive Agent with Discount factor = " + this.discount);
 			System.out.println("The total profit after "+numActions+" actions is "+myAgent.getTotalProfit()+" (average profit: "+(myAgent.getTotalProfit() / (double)numActions)+")");
 		}
 		numActions++;
