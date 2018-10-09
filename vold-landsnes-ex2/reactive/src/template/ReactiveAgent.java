@@ -156,7 +156,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 			// MULIG Å GJØRE DET FOR ALLE BYER OG IKKE BARE NABOER?? iKKE TA MED BYEN VI ER I
 			for (City moveToCity : fromCity.neighbors()) {
 				// Initialize qValues to be 0.0 and the reward values to their respected values
-				rewards.put(moveToCity, -(td.reward(fromCity, moveToCity) * kmCost));
+				rewards.put(moveToCity, -(fromCity.distanceTo(moveToCity) * kmCost));
 				qValues.put(moveToCity, 0.0);
 			}
 			
