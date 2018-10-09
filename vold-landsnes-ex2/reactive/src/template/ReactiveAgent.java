@@ -30,6 +30,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 		// If the property is not present it defaults to 0.95
 		Double discount = agent.readProperty("discount-factor", Double.class,
 				0.95);
+		System.out.println("Discount factor is: " + discount);
 		this.numActions = 0;
 		this.myAgent = agent;
 		
@@ -153,7 +154,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 			
 			// The values that are added here are the values corresponding to a move action
 			
-			// MULIG Å GJØRE DET FOR ALLE BYER OG IKKE BARE NABOER?? iKKE TA MED BYEN VI ER I
+			// Have to go to a neighbor because going straight to a no-neighbor is not allowed
 			for (City moveToCity : fromCity.neighbors()) {
 				// Initialize qValues to be 0.0 and the reward values to their respected values
 				rewards.put(moveToCity, -(fromCity.distanceTo(moveToCity) * kmCost));
@@ -199,6 +200,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 			}
 		}
 		if (numActions >= 1) {
+			System.out.println("Reactive Agent");
 			System.out.println("The total profit after "+numActions+" actions is "+myAgent.getTotalProfit()+" (average profit: "+(myAgent.getTotalProfit() / (double)numActions)+")");
 		}
 		numActions++;
