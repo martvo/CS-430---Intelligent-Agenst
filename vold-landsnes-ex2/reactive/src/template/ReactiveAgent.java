@@ -16,7 +16,6 @@ import logist.topology.Topology.City;
 
 public class ReactiveAgent implements ReactiveBehavior {
 	
-	private double pPickup;
 	private int numActions;
 	private Agent myAgent;
 	
@@ -31,8 +30,6 @@ public class ReactiveAgent implements ReactiveBehavior {
 		// If the property is not present it defaults to 0.95
 		Double discount = agent.readProperty("discount-factor", Double.class,
 				0.95);
-
-		this.pPickup = discount;
 		this.numActions = 0;
 		this.myAgent = agent;
 		
@@ -56,32 +53,26 @@ public class ReactiveAgent implements ReactiveBehavior {
 			
 			for (City toCity : topology.cities()) {
 				// this adds a state which has a task from fromCity to toCity
-				State newState = new State(fromCity, toCity, td, topology, costPerKm);
-				hashMapStates.put(toCity, newState);
 				
-				// initializes all values to 0.0
-				values.put(newState, 0.0);
-				
-				// initializes actions to null. This is the action for when a city has a task
-				actions.put(newState, null);
+				//if (fromCity != toCity) {
+					State newState = new State(fromCity, toCity, td, topology, costPerKm);
+					hashMapStates.put(toCity, newState);
+					
+					// initializes all values to 0.0
+					values.put(newState, 0.0);
+					
+					// initializes actions to null. This is the action for when a city has a task
+					actions.put(newState, null);
+				//}
 			}
 			states.put(fromCity, hashMapStates);
 		}
 		
-		
 		printRewards();
 		System.out.println();
-		printValues();
-		System.out.println();
-		printStatesWithBestActionAndValue();
-		System.out.println();
-		
 		
 		valueIteration(discount, td, topology);
 		
-		
-		printRewards();
-		System.out.println();
 		printValues();
 		System.out.println();
 		printStatesWithBestActionAndValue();
@@ -107,7 +98,6 @@ public class ReactiveAgent implements ReactiveBehavior {
 						
 						// Start with the immediate reward R(s,a) in the value iteration algorithm
 						double oldValue = currentState.rewards.get(action);
-						City bestAction = null;
 						
 						// variable for the sum part of the bellman update
 						double sumPart = 0.0;
@@ -116,6 +106,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 						
 						// For each state s'
 						for (City toCity : topology.cities()) {
+							
 							sumPart = discount * td.probability(action, toCity) * values.get(states.get(action).get(toCity));
 							probForNoTask -= td.probability(action, toCity);
 						}
@@ -160,17 +151,20 @@ public class ReactiveAgent implements ReactiveBehavior {
 			fromCity = from;
 			deliveryTo = to;
 			
-			// Add values for a deliver action, if there exists a task
-			if (deliveryTo != null) {
-				qValues.put(deliveryTo, 0.0);
-				rewards.put(deliveryTo, td.reward(fromCity, deliveryTo) - ((td.reward(fromCity, deliveryTo) * kmCost)));
-			}
-			
 			// The values that are added here are the values corresponding to a move action
+			
+			// MULIG Å GJØRE DET FOR ALLE BYER OG IKKE BARE NABOER?? iKKE TA MED BYEN VI ER I
 			for (City moveToCity : fromCity.neighbors()) {
 				// Initialize qValues to be 0.0 and the reward values to their respected values
 				rewards.put(moveToCity, -(td.reward(fromCity, moveToCity) * kmCost));
 				qValues.put(moveToCity, 0.0);
+			}
+			
+			// Add values for a deliver action, if there exists a task
+			// Has to be under the for loop! Or else we will write over the reward when there is a task
+			if (deliveryTo != null) {
+				qValues.put(deliveryTo, 0.0);
+				rewards.put(deliveryTo, td.reward(fromCity, deliveryTo) - (fromCity.distanceTo(deliveryTo) * kmCost));
 			}
 		}
 	}
@@ -193,11 +187,21 @@ public class ReactiveAgent implements ReactiveBehavior {
 			action = new Move(goToCity);
 			System.out.println(values.get(states.get(currentCity).get(null)));
 		} else {
-			City goToCity = actions.get(states.get(currentCity).get(null));
-			System.out.println("Task in " + currentCity.name + ". Going to " + goToCity);
-			action = new Move(goToCity);
-			System.out.println(values.get(states.get(currentCity).get(availableTask.deliveryCity)));
+			City bestActionForState = actions.get(states.get(currentCity).get(availableTask.deliveryCity));
+			
+			// Pick up task if the best action for the state is the same as the delivery city of the task
+			if (bestActionForState == availableTask.deliveryCity) {
+				action = new Pickup(availableTask);
+				System.out.println("Decided to take the task, going to: " + availableTask.deliveryCity + " to deliver");
+			} else {  // skip the task and try another city
+				action = new Move(bestActionForState);
+				System.out.println("Decided not to take the task, going to: " + bestActionForState);
+			}
 		}
+		if (numActions >= 1) {
+			System.out.println("The total profit after "+numActions+" actions is "+myAgent.getTotalProfit()+" (average profit: "+(myAgent.getTotalProfit() / (double)numActions)+")");
+		}
+		numActions++;
 		return action;
 	}
 	
@@ -220,7 +224,7 @@ public class ReactiveAgent implements ReactiveBehavior {
 	public void printStatesWithBestActionAndValue() {
 		for (City city : states.keySet()) {
 			for (City city2 : states.get(city).keySet()) {
-				System.out.println("From " + city + " to " + city2 + " best action: " + actions.get(states.get(city).get(city2)) + " best value " +
+				System.out.println("From " + city + " to " + city2 + " best action: " + actions.get(states.get(city).get(city2)) + ", best value: " +
 						values.get(states.get(city).get(city2)));
 			}
 		}
