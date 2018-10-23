@@ -85,6 +85,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 					finalStates.add(node);
 				}
 			}
+			
 			// ________________Test for å se om dette gjør BFS bedre_________________________
 			// bytter ut en state hvis vi finner en bedre!!!! da slipper vi å sjekke om det er flere som er like
 			DeliberativeState visited = null;
@@ -126,6 +127,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 				}
 			}
 			*/
+			
 		}
 		for (Action a : finalStates.get(0).getPlanForState()) {
 			plan.append(a);
@@ -190,10 +192,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 		}
 		return plan;
 	}
-	
-	public LinkedList<DeliberativeState> sortedQueue(LinkedList<DeliberativeState> queue, int costPerKm) {
-		return null;
-	}
+
 	
 	// If no task to pick up: return the cost of delivering the task with the longest distance
 	// If items to pickup: return the cost of picking up the task that is farthest away, picking it up, and delivering it
@@ -201,7 +200,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 		double highestValue = 0;
 		if (!(state.getWorldTaskSize() == 0)) {
 			for (Task task : state.getWorldTaskSet()) {
-				double travellDistance = state.getCityOfState().distanceTo(task.pickupCity) + state.getCityOfState().distanceTo(task.deliveryCity);
+				double travellDistance = state.getCityOfState().distanceTo(task.pickupCity) + task.pickupCity.distanceTo(task.deliveryCity);
 				if (highestValue < travellDistance) {
 					highestValue = travellDistance;
 				}
