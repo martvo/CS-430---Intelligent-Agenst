@@ -64,7 +64,8 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 		default:
 			throw new AssertionError("Should not happen.");
 		}
-		System.out.println("It took " + (System.currentTimeMillis() - startTime) + " milliseconds to calculate the plan");
+		System.out.println("It took " + (System.currentTimeMillis() - startTime) + " milliseconds to calculate the plan with the " + algorithm + " algorithm");
+		System.out.println();
 		return plan;
 	}
 	
@@ -75,22 +76,14 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 		LinkedList<DeliberativeState> queue = new LinkedList<DeliberativeState>();
 		List<DeliberativeState> visitedStates = new ArrayList<DeliberativeState>();
 		queue.addLast(new DeliberativeState(vehicle.getCurrentTasks(), tasks, capasity, vehicle.getCurrentCity()));
-		// for (int x = 0; x < 3; x++) {
 		while (!queue.isEmpty()) {
-			System.out.println("Queue: " + queue.size());
-			System.out.println("Final: " + finalStates.size());
 			DeliberativeState node = queue.removeFirst();
-			System.out.println(node.getCityOfState() + " " + node.getCurrentTaskSize() + " " + node.getWorldTaskSize());
-			// System.out.println(node);
-			// System.out.println(node.getSuccessors(vehicle).size());
 			if (node.isFinal()) {
-				System.out.println("Final");
 				if (finalStates.size() > 0 && (node.getCost() < finalStates.get(0).getCost())) {
 					finalStates.add(0, node);
 				} else {
 					finalStates.add(node);
 				}
-				// add first if lowest cost?? -> then the best final state is first in the list. Just use .get(0) to get it
 			}
 			// ________________Test for å se om dette gjør BFS bedre_________________________
 			// bytter ut en state hvis vi finner en bedre!!!! da slipper vi å sjekke om det er flere som er like
@@ -133,20 +126,11 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 				}
 			}
 			*/
-			System.out.println("Visited: " + visitedStates.size());
-			System.out.println(node.getActionsToState());
-			System.out.println();
 		}
-		System.out.println(finalStates.get(0).getActionsToState());
-		// for each action in the actions of the final state, add them
 		for (Action a : finalStates.get(0).getPlanForState()) {
 			plan.append(a);
 		}
-		for (DeliberativeState d : finalStates) {
-			System.out.println(d.getCost());
-		}
-		System.out.println(finalStates.get(0).getCost());
-		System.out.println(plan.totalDistance());
+		System.out.println("Found a optimal plan with the BFS agent with cost: " + finalStates.get(0).getCost());
 		return plan;
 	}
 	
@@ -161,12 +145,10 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 			DeliberativeState node = queue.removeFirst();
 			
 			if (node.isFinal()) {
-				System.out.println("Found optimal plan");
+				System.out.println("Found optimal plan with the A* algorithm with cost: " + node.getCost());
 				for (Action a : node.getPlanForState()) {
 					plan.append(a);
 				}
-				System.out.println(node.getCost());
-				System.out.println(plan.totalDistance());
 				return plan;
 			}
 			
@@ -197,7 +179,6 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 			}
 			
 			// Sort queue
-			// queue = sortedQueue(queue, vehicle.costPerKm());
 			Collections.sort(queue, new Comparator<DeliberativeState>() {
 			    @Override
 			    public int compare(DeliberativeState s1, DeliberativeState s2) {
@@ -205,10 +186,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 			        // return (int) (getF(s2, vehicle.costPerKm()) - getF(s1, vehicle.costPerKm()));
 			    }
 			});
-			System.out.println();
-			
-			// Må sortere listne med visited p f(x) og bytte hvis den er bedre
-			// Husk å gange h med costPerKm!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 		}
 		return plan;
 	}
@@ -260,7 +238,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 	@Override
 	public void planCancelled(TaskSet carriedTasks) {
 		// TODO Auto-generated method stub
-		
+		// This is not needed as we get the carriedTasks set from the vehicle.getCurrentTasks() when we are calculation a plan
 	}
 
 }

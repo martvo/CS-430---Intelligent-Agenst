@@ -114,21 +114,16 @@ public class DeliberativeState {
 	public ArrayList<DeliberativeState> getSuccessors(Vehicle vehicle) {
 		ArrayList<DeliberativeState> outList = new ArrayList<DeliberativeState>();
 		
-		System.out.println("State: " + this + ", has currentCity: " + this.currentCity + ", and has a cost of: " + this.costOfGettingToState);
 		// If no more tasks -> return empty ArrayList
 		if (currentTaskSet.isEmpty() && tasksInTheTopology.isEmpty()) {
-			return outList;  // Tror ikke denne trengs, men den øker kjøre tid....
+			return outList;
 		}
 		
 		// Fist we go through all tasks we can deliver and add the state we will end up in
 		// System.out.println("Current tasks: " + currentTaskSet.size() + ", world tasks: " + tasksInTheTopology.size());
 		for (Task t : currentTaskSet) {
-			// DeliberativeState thisState = (DeliberativeState) this.clone();
 			// "Copy" the state
 			DeliberativeState thisState = new DeliberativeState(this.currentTaskSet.clone(), this.tasksInTheTopology.clone(), this.capacity, this.currentCity);
-			// System.out.println("This state (" + thisState + ") in the agent loop has currentTasks:" + thisState.getCurrentTaskSize() + ", and worldTasks:" + thisState.getWorldTaskSize());
-			// System.out.println("And this new state: " + this + ", has currentCity: " + thisState.getCityOfState());
-			// thisState.setActionsToGetToState(this.actionsToGetToState);
 			for (Action a : this.actionsToGetToState) {
 				thisState.actionsToGetToState.add(a);
 			}
@@ -159,13 +154,10 @@ public class DeliberativeState {
 				// DeliberativeState thisState = (DeliberativeState) this.clone();
 				// "Copy" the state
 				DeliberativeState thisState = new DeliberativeState(this.currentTaskSet.clone(), this.tasksInTheTopology.clone(), this.capacity, this.currentCity);
-				// System.out.println("This state( " + thisState + ")  in the world loop has currentTasks:" + thisState.getCurrentTaskSize() + ", and worldTasks:" + thisState.getWorldTaskSize());
-				// thisState.setActionsToGetToState(this.actionsToGetToState);
 				for (Action a : this.actionsToGetToState) {
 					thisState.actionsToGetToState.add(a);
 				}
 				thisState.updateCost(this.costOfGettingToState);
-				System.out.println("And this new state: " + this + ", has currentCity: " + thisState.getCityOfState());
 				
 				// Add actions to get to the pickup city of the task
 				for (City city : this.currentCity.pathTo(t.pickupCity)) {

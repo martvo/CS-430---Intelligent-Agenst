@@ -2,8 +2,11 @@
 
 <history configuration="config\deliberative.xml">
 	<agents>
-		<agent name="deliberative-bfs">
+		<agent name="deliberative-main">
 			<vehicle name="Vehicle 1"/>
+		</agent>
+		<agent name="deliberative-bfs">
+			<vehicle name="Vehicle 2"/>
 		</agent>
 	</agents>
 	<rounds>
@@ -18,28 +21,28 @@
 			</tasks>
 			<events>
 				<event id="0" time="0" vehicle="Vehicle 1" pickup="4"/>
-				<event id="1" time="299999982" vehicle="Vehicle 1" move="Sion"/>
-				<event id="2" time="1966666545" vehicle="Vehicle 1" pickup="2"/>
-				<event id="3" time="2266666527" vehicle="Vehicle 1" pickup="5"/>
-				<event id="4" time="2566666512" vehicle="Vehicle 1" move="Thun"/>
-				<event id="5" time="3899999774" vehicle="Vehicle 1" move="Bern"/>
-				<event id="6" time="4344444195" vehicle="Vehicle 1" move="Basel"/>
-				<event id="7" time="5899999665" vehicle="Vehicle 1" deliver="5"/>
-				<event id="8" time="6199999648" vehicle="Vehicle 1" pickup="3"/>
-				<event id="9" time="6499999630" vehicle="Vehicle 1" move="Zürich"/>
-				<event id="10" time="7833332889" vehicle="Vehicle 1" move="St-Gallen"/>
-				<event id="11" time="9166666152" vehicle="Vehicle 1" deliver="3"/>
-				<event id="12" time="9466666138" vehicle="Vehicle 1" deliver="4"/>
+				<event id="1" time="0" vehicle="Vehicle 2" pickup="1"/>
+				<event id="2" time="299999988" vehicle="Vehicle 1" move="Sion"/>
+				<event id="3" time="299999988" vehicle="Vehicle 2" move="Aarau"/>
+				<event id="4" time="966666619" vehicle="Vehicle 2" pickup="0"/>
+				<event id="5" time="1266666606" vehicle="Vehicle 2" move="Bern"/>
 			</events>
 		</round>
 	</rounds>
 	<statistics>
-		<stat rank="1" agent="deliberative-bfs">
-			<total-tasks value="6"/>
-			<total-distance value="690.0"/>
-			<total-cost value="3450"/>
-			<total-reward value="124662"/>
-			<total-profit value="121212"/>
+		<stat rank="1" agent="deliberative-main">
+			<total-tasks value="4"/>
+			<total-distance value="150.0"/>
+			<total-cost value="750"/>
+			<total-reward value="0"/>
+			<total-profit value="-750"/>
+		</stat>
+		<stat rank="2" agent="deliberative-bfs">
+			<total-tasks value="5"/>
+			<total-distance value="170.0"/>
+			<total-cost value="850"/>
+			<total-reward value="0"/>
+			<total-profit value="-850"/>
 		</stat>
 	</statistics>
 </history>
