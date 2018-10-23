@@ -93,23 +93,24 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 				// add first if lowest cost?? -> then the best final state is first in the list. Just use .get(0) to get it
 			}
 			// ________________Test for å se om dette gjør BFS bedre_________________________
-			ArrayList<DeliberativeState> equalStates = new ArrayList<DeliberativeState>();
+			// bytter ut en state hvis vi finner en bedre!!!! da slipper vi å sjekke om det er flere som er like
+			DeliberativeState visited = null;
 			for (DeliberativeState d : visitedStates) {
 				if (node.isTheSame(d)) {
-					equalStates.add(d);
+					visited = d;
 				}
 			}
-			if (equalStates.isEmpty()) {
+			
+			if (visited == null) {
 				visitedStates.add(node);
 				queue.addAll(node.getSuccessors(vehicle));
 			} else {
-				DeliberativeState bestState = equalStates.get(0);
-				for (DeliberativeState s : equalStates) {
-					if (bestState.getCost() > s.getCost()) {
-						bestState = s;
-					}
-				}
-				if (bestState.getCost() > node.getCost()) {
+				if (visited.getCost() > node.getCost()) {
+					// replace old state with the new and better one and remove it's successors
+					queue.removeAll(visited.getSuccessors(vehicle));
+					visitedStates.remove(visited);
+					
+					// Add the state that was better and it's successors
 					visitedStates.add(node);
 					queue.addAll(node.getSuccessors(vehicle));
 				}
