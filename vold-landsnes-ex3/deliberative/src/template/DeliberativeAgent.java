@@ -3,6 +3,7 @@ package template;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -75,6 +76,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 		List<DeliberativeState> finalStates = new ArrayList<DeliberativeState>();
 		LinkedList<DeliberativeState> queue = new LinkedList<DeliberativeState>();
 		List<DeliberativeState> visitedStates = new ArrayList<DeliberativeState>();
+
 		queue.addLast(new DeliberativeState(vehicle.getCurrentTasks(), tasks, capasity, vehicle.getCurrentCity()));
 		while (!queue.isEmpty()) {
 			DeliberativeState node = queue.removeFirst();
@@ -86,8 +88,6 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 				}
 			}
 			
-			// ________________Test for å se om dette gjør BFS bedre_________________________
-			// bytter ut en state hvis vi finner en bedre!!!! da slipper vi å sjekke om det er flere som er like
 			DeliberativeState visited = null;
 			for (DeliberativeState d : visitedStates) {
 				if (node.isTheSame(d)) {
@@ -95,39 +95,24 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 				}
 			}
 			
+			ArrayList<DeliberativeState> childs = node.getSuccessors(vehicle);
+			
 			if (visited == null) {
 				visitedStates.add(node);
-				queue.addAll(node.getSuccessors(vehicle));
+				queue.addAll(childs);
+				
 			} else {
 				if (visited.getCost() > node.getCost()) {
-					// replace old state with the new and better one and remove it's successors
-					queue.removeAll(visited.getSuccessors(vehicle));
+					// replace old state with the new and better one
+					// queue.removeAll(visited.getSuccessors(vehicle));
 					visitedStates.remove(visited);
 					
 					// Add the state that was better and it's successors
 					visitedStates.add(node);
-					queue.addAll(node.getSuccessors(vehicle));
+					queue.addAll(childs);
+				
 				}
 			}
-			// _________________________________________________________________________________
-			
-			/*
-			boolean visited = false;
-			for (DeliberativeState d : visitedStates) {
-				if (node.isTheSame(d)) {
-					visited = true;
-				}
-			}
-			if (!visited) {  // Legg til en sjekk på om hvis vi har vært i denne staten så sjekker vi om den har bedre cost enn den som allerede ligger der!!!!!!!!!!s
-				System.out.println("Not visited");
-				visitedStates.add(node);
-				for (DeliberativeState successor : node.getSuccessors(vehicle)) {
-					queue.addLast(successor);
-					System.out.println("Successor has actions: " + successor.getActionsToState());
-				}
-			}
-			*/
-			
 		}
 		for (Action a : finalStates.get(0).getPlanForState()) {
 			plan.append(a);
@@ -135,6 +120,8 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 		System.out.println("Found a optimal plan with the BFS agent with cost: " + finalStates.get(0).getCost());
 		return plan;
 	}
+	
+	
 	
 	
 	public Plan aStarPlan(Vehicle vehicle, TaskSet tasks) {
@@ -219,20 +206,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 	public double getF(DeliberativeState state, int costPerKm) {
 		return state.getCost() + getH(state, costPerKm);
 	}
-	
-	// Lurer på om jeg trenger denne???
-	/*
-	public ArrayList<DeliberativeState> sortByF(ArrayList<DeliberativeState> stateList) {
-		//sort by f
-		Collections.sort(stateList, new Comparator<DeliberativeState>() {
-			@Override
-			public int compare(DeliberativeState s1, DeliberativeState s2) {
-				return (int) (getF(s1) - getF(s2));
-			}
-		});
-		return stateList.sort((DeliberativeState s1, DeliberativeState s2)->(getF(s1) - getF(s2)));
-	}
-	*/
+
 	
 	@Override
 	public void planCancelled(TaskSet carriedTasks) {
