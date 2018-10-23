@@ -114,7 +114,7 @@ public class DeliberativeState {
 	public ArrayList<DeliberativeState> getSuccessors(Vehicle vehicle) {
 		ArrayList<DeliberativeState> outList = new ArrayList<DeliberativeState>();
 		
-		System.out.println("State: " + this + ", has currentCity: " + this.currentCity);
+		System.out.println("State: " + this + ", has currentCity: " + this.currentCity + ", and has a cost of: " + this.costOfGettingToState);
 		// If no more tasks -> return empty ArrayList
 		if (currentTaskSet.isEmpty() && tasksInTheTopology.isEmpty()) {
 			return outList;  // Tror ikke denne trengs, men den øker kjøre tid....
@@ -140,7 +140,7 @@ public class DeliberativeState {
 			}
 			
 			// Then we change our city to the city we moved to and add the cost for moving there
-			thisState.updateCost(vehicle.costPerKm() * this.currentCity.distanceTo(t.deliveryCity));
+			thisState.updateCost((vehicle.costPerKm() * this.currentCity.distanceTo(t.deliveryCity)));
 			thisState.setCurrentCity(t.deliveryCity);
 			
 			// Since we are delivering a task we remove it from our task set, deliver the task and update our capacity
@@ -168,7 +168,7 @@ public class DeliberativeState {
 				System.out.println("And this new state: " + this + ", has currentCity: " + thisState.getCityOfState());
 				
 				// Add actions to get to the pickup city of the task
-				for (City city : thisState.getCityOfState().pathTo(t.pickupCity)) {
+				for (City city : this.currentCity.pathTo(t.pickupCity)) {
 					thisState.actionsToGetToState.add(new Move(city));
 				}
 				

@@ -75,10 +75,8 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 		LinkedList<DeliberativeState> queue = new LinkedList<DeliberativeState>();
 		List<DeliberativeState> visitedStates = new ArrayList<DeliberativeState>();
 		queue.addLast(new DeliberativeState(vehicle.getCurrentTasks(), tasks, capasity, vehicle.getCurrentCity()));
-		int i = 0;
 		// for (int x = 0; x < 3; x++) {
 		while (!queue.isEmpty()) {
-			System.out.println(i);
 			System.out.println("Queue: " + queue.size());
 			System.out.println("Final: " + finalStates.size());
 			DeliberativeState node = queue.removeFirst();
@@ -87,13 +85,38 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 			// System.out.println(node.getSuccessors(vehicle).size());
 			if (node.isFinal()) {
 				System.out.println("Final");
-				if (finalStates.size() > 0 && node.getCost() < finalStates.get(0).getCost()) {
+				if (finalStates.size() > 0 && (node.getCost() < finalStates.get(0).getCost())) {
 					finalStates.add(0, node);
 				} else {
 					finalStates.add(node);
 				}
 				// add first if lowest cost?? -> then the best final state is first in the list. Just use .get(0) to get it
 			}
+			// ________________Test for å se om dette gjør BFS bedre_________________________
+			ArrayList<DeliberativeState> equalStates = new ArrayList<DeliberativeState>();
+			for (DeliberativeState d : visitedStates) {
+				if (node.isTheSame(d)) {
+					equalStates.add(d);
+				}
+			}
+			if (equalStates.isEmpty()) {
+				visitedStates.add(node);
+				queue.addAll(node.getSuccessors(vehicle));
+			} else {
+				DeliberativeState bestState = equalStates.get(0);
+				for (DeliberativeState s : equalStates) {
+					if (bestState.getCost() > s.getCost()) {
+						bestState = s;
+					}
+				}
+				if (bestState.getCost() > node.getCost()) {
+					visitedStates.add(node);
+					queue.addAll(node.getSuccessors(vehicle));
+				}
+			}
+			// _________________________________________________________________________________
+			
+			/*
 			boolean visited = false;
 			for (DeliberativeState d : visitedStates) {
 				if (node.isTheSame(d)) {
@@ -101,13 +124,14 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 				}
 			}
 			if (!visited) {  // Legg til en sjekk på om hvis vi har vært i denne staten så sjekker vi om den har bedre cost enn den som allerede ligger der!!!!!!!!!!s
-				// System.out.println("Not visited");
+				System.out.println("Not visited");
 				visitedStates.add(node);
 				for (DeliberativeState successor : node.getSuccessors(vehicle)) {
 					queue.addLast(successor);
 					System.out.println("Successor has actions: " + successor.getActionsToState());
 				}
-			} else i++;
+			}
+			*/
 			System.out.println("Visited: " + visitedStates.size());
 			System.out.println(node.getActionsToState());
 			System.out.println();
@@ -117,7 +141,11 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 		for (Action a : finalStates.get(0).getPlanForState()) {
 			plan.append(a);
 		}
+		for (DeliberativeState d : finalStates) {
+			System.out.println(d.getCost());
+		}
 		System.out.println(finalStates.get(0).getCost());
+		System.out.println(plan.totalDistance());
 		return plan;
 	}
 	
@@ -137,6 +165,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 					plan.append(a);
 				}
 				System.out.println(node.getCost());
+				System.out.println(plan.totalDistance());
 				return plan;
 			}
 			
@@ -210,7 +239,7 @@ public class DeliberativeAgent implements DeliberativeBehavior {
 	}
 	
 	public double getF(DeliberativeState state, int costPerKm) {
-		return state.getCost() * getH(state, costPerKm);
+		return state.getCost() + getH(state, costPerKm);
 	}
 	
 	// Lurer på om jeg trenger denne???
