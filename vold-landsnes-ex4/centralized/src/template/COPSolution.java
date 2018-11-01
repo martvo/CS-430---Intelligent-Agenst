@@ -86,5 +86,21 @@ public class COPSolution {
 	public List<Plan> get_plans() {
 		return plans;
 	}
+	
+	
+	public Plan get_vehicle_plan(int index) {
+		return plans.get(index);
+	}
+	
+	
+	public List<Integer> get_index_of_possible_next_vechile() {
+		List<Integer> indexes = new ArrayList<Integer>();
+		for (int i = 0; i < this.plans.size(); i++) {
+			if (plans.get(i).totalDistance() > 0) {
+				indexes.add(i);
+			}
+		}
+		return indexes;
+	}
 
 }
