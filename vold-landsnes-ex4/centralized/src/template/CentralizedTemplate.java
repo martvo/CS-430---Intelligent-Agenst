@@ -65,6 +65,8 @@ public class CentralizedTemplate implements CentralizedBehavior {
 
         List<Plan> plans = new ArrayList<Plan>();
         plans.add(planVehicle1);
+        
+        // Want this while loop because each vehicle needs to have at least the Plan.EMPTY action!
         while (plans.size() < vehicles.size()) {
             plans.add(Plan.EMPTY);
         }

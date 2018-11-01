@@ -2,7 +2,7 @@
 
 <history configuration="config\centralized.xml">
 	<agents>
-		<agent name="centralized-random">
+		<agent name="centralized-main">
 			<vehicle name="Vehicle 1"/>
 			<vehicle name="Vehicle 2"/>
 			<vehicle name="Vehicle 3"/>
@@ -45,23 +45,19 @@
 			</tasks>
 			<events>
 				<event id="0" time="0" vehicle="Vehicle 1" move="Leeds"/>
-				<event id="1" time="1094444379" vehicle="Vehicle 1" move="Sheffield"/>
-				<event id="2" time="1553333238" vehicle="Vehicle 1" move="Birmingham"/>
-				<event id="3" time="2555555412" vehicle="Vehicle 1" move="Cardiff"/>
-				<event id="4" time="3833333130" vehicle="Vehicle 1" pickup="0"/>
-				<event id="5" time="4133333110" vehicle="Vehicle 1" move="Birmingham"/>
-				<event id="6" time="5411110804" vehicle="Vehicle 1" move="London"/>
-				<event id="7" time="6722221841" vehicle="Vehicle 1" move="Portsmouth"/>
+				<event id="1" time="1094444397" vehicle="Vehicle 1" move="Sheffield"/>
+				<event id="2" time="1553333257" vehicle="Vehicle 1" move="Birmingham"/>
+				<event id="3" time="2555555430" vehicle="Vehicle 1" move="Cardiff"/>
 			</events>
 		</round>
 	</rounds>
 	<statistics>
-		<stat rank="1" agent="centralized-random">
+		<stat rank="1" agent="centralized-main">
 			<total-tasks value="30"/>
-			<total-distance value="652.8"/>
-			<total-cost value="3264"/>
+			<total-distance value="345.0"/>
+			<total-cost value="1725"/>
 			<total-reward value="0"/>
-			<total-profit value="-3264"/>
+			<total-profit value="-1725"/>
 		</stat>
 	</statistics>
 </history>
