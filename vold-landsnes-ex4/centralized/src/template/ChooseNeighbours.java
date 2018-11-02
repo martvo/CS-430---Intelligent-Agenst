@@ -30,28 +30,18 @@ public class ChooseNeighbours {
 		for (int i = 0; i < v_list.size(); i++) {
 			Vehicle other_v = v_list.get(i);
 			if (!chosen_vehicle.equals(other_v)) {
-				// Bør vell lage en kopi av nåværenede solution hær! så jeg kan endre på den så my som jeg vil uten at det påvirker den vi har hær....
-				COPSolution new_solution = new COPSolution(A);  // Må kunne lage en ny instans med egne lister!!
-				// Usikker på vi trenger å lage en ny instans hær.... Mulig å bruke A, gjør jo ikke noe med den nye, bare henter ut info fra den.....
 				
 				// Choose a random task from the plan of the chosen_vehicle to remove
-				ArrayList<Task> choosen_task_list = new_solution.get_task_per_vehicle().get(chosen_vehicle);
+				ArrayList<Task> choosen_task_list = A.get_task_per_vehicle().get(chosen_vehicle);
 				int random_task_index = r.nextInt(choosen_task_list.size());
 				Task random_task = choosen_task_list.get(random_task_index);
-				System.out.println(random_task);
-				
-				// Check if this task fits the other_v vehicle
-				int capacity_of_other_vehicle = other_v.capacity();
-				for (Task t : new_solution.get_task_per_vehicle().get(other_v)) {
-					capacity_of_other_vehicle -= t.weight;
-				}
-				System.out.println(capacity_of_other_vehicle);
+				//System.out.println(random_task);
 				
 				// Check if the randomly chosen task fits
-				if (capacity_of_other_vehicle >= random_task.weight) {
-					ArrayList<COPSolution> neighbors_list = change_vehicle(new_solution, random_task, chosen_vehicle, other_v);
+				if (other_v.capacity() >= random_task.weight) {
+					ArrayList<COPSolution> neighbors_list = change_vehicle(A, random_task, chosen_vehicle, other_v, tasks);
 					for (COPSolution s : neighbors_list) {
-						if (s.get_cost_of_solution() >= new_solution.get_cost_of_solution()) {
+						if (s.get_cost_of_solution() >= A.get_cost_of_solution()) {
 							neighbour_set.add(s);
 						}
 					}
@@ -62,15 +52,35 @@ public class ChooseNeighbours {
 	}
 	
 	
-	public static ArrayList<COPSolution> change_vehicle(COPSolution old_A, Task t, Vehicle chosen_vehicle, Vehicle other_vehicle) {
-		COPSolution new_A = new COPSolution(old_A);
+	public static ArrayList<COPSolution> change_vehicle(COPSolution old_A, Task t, Vehicle chosen_vehicle, Vehicle other_vehicle, TaskSet tasks) {
+		ArrayList<COPSolution> neighbours = new ArrayList<COPSolution>();
 		
-		// Remove the task from chosen_vehicle and add to other_vehicle
-		new_A.get_task_per_vehicle().get(chosen_vehicle).remove(t);
-		new_A.get_task_per_vehicle().get(other_vehicle).add(t);
-		
-		// Remove the actions for the task in chosen_vehicle
-		
+		for (int i = 0; i < old_A.get_action_task_list().size(); i++) {
+			
+			for (int j = i + 1; j < old_A.get_action_task_list().size(); j++) {
+				COPSolution new_A = new COPSolution(old_A);
+				Integer task_id = new_A.get_tasks_map().get(t);
+				
+				// Remove the task from chosen_vehicle and add to other_vehicle
+				new_A.get_task_per_vehicle().get(chosen_vehicle).remove(t);
+				new_A.get_task_per_vehicle().get(other_vehicle).add(t);
+				
+				// Remove the actions for the task in chosen_vehicle
+				new_A.get_action_task_list().get(chosen_vehicle).remove(task_id);
+				new_A.get_action_task_list().get(chosen_vehicle).remove(task_id + tasks.size());
+				
+				// Add the actions for task t to other vehicle in new_A (pickup on index i, delivery on index j)
+				ArrayList<Integer> other_vehicle_actions = new_A.get_action_task_list().get(other_vehicle);
+				other_vehicle_actions.add(i, task_id);
+				other_vehicle_actions.add(j, task_id + tasks.size());
+				
+				// Create the plan and see if it's respects the constraints
+				int capacity = other_vehicle.capacity();
+				for (Integer n : other_vehicle_actions) {
+					
+				}
+			}
+		}
 		
 		return null;
 	}

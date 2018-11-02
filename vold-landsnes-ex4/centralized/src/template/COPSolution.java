@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import logist.plan.Action;
 import logist.plan.Plan;
 import logist.simulation.Vehicle;
 import logist.task.Task;
@@ -17,7 +16,7 @@ public class COPSolution {
 	private List<Plan> plans;
 	private LinkedHashMap<Vehicle, ArrayList<Integer>> action_task_list;  // Keeps the sequence of pickup and deliver actions
 	private LinkedHashMap<Vehicle, ArrayList<Task>> vehicle_tasks;  // Keeps the task per vehicle
-	private HashMap<Integer, Task> tasks_map;
+	private HashMap<Task, Integer> tasks_map;
 	private double cost_of_all_plans;
 	
 	
@@ -26,7 +25,7 @@ public class COPSolution {
 		plans = new ArrayList<Plan>();
 		action_task_list = new LinkedHashMap<Vehicle, ArrayList<Integer>>();
 		vehicle_tasks = new LinkedHashMap<Vehicle, ArrayList<Task>>();
-		tasks_map = new HashMap<Integer, Task>();
+		tasks_map = new HashMap<Task, Integer>();
 		
 		// Create an empty plan for all vehicles and find the vehicle with the biggest capacity
 		int biggest_capacity = 0;
@@ -57,7 +56,7 @@ public class COPSolution {
 		ArrayList<Task> task_per_vehicle = new ArrayList<Task>();
 		for (Task t : tasks) {
 			// move: current city to pickup location
-			tasks_map.put(t.id, t);
+			tasks_map.put(t, t.id);
 			task_per_vehicle.add(t);
             for (City city : current_city_for_vehicle.pathTo(t.pickupCity)) {
             	new_plan.appendMove(city);
@@ -103,14 +102,25 @@ public class COPSolution {
 		
 		// Add action per tasks
 		for (Entry<Vehicle, ArrayList<Integer>> entry : s.get_action_task_list().entrySet()) {
-			action_task_list.put(entry.getKey(), entry.getValue());
+			ArrayList<Integer> l = new ArrayList<Integer>();
+			Vehicle v = entry.getKey();
+			for (Integer i : entry.getValue()) {
+				l.add(i);
+			}
+			action_task_list.put(v, l);
 		}
 		
 		// Add task per vehicle
 		for (Entry<Vehicle, ArrayList<Task>> entry : s.get_task_per_vehicle().entrySet()) {
-			vehicle_tasks.put(entry.getKey(), entry.getValue());
+			ArrayList<Task> t = new ArrayList<Task>();
+			Vehicle v = entry.getKey();
+			for (Task i : entry.getValue()) {
+				t.add(i);
+			}
+			vehicle_tasks.put(v, t);
 		}
 		
+		// Add task map
 		tasks_map = s.get_tasks_map();
 		
 		// Add cost
@@ -153,7 +163,7 @@ public class COPSolution {
 	}
 	
 	
-	public HashMap<Integer, Task> get_tasks_map() {
+	public HashMap<Task, Integer> get_tasks_map() {
 		return tasks_map;
 	}
 	
