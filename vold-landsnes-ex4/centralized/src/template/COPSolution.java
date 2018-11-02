@@ -15,7 +15,7 @@ import logist.topology.Topology.City;
 public class COPSolution {
 	
 	private List<Plan> plans;
-	private LinkedHashMap<Vehicle, ArrayList<Action>> action_task_list;  // Keeps the sequence of pickup and deliver actions
+	private LinkedHashMap<Vehicle, ArrayList<Integer>> action_task_list;  // Keeps the sequence of pickup and deliver actions
 	private LinkedHashMap<Vehicle, ArrayList<Task>> vehicle_tasks;  // Keeps the task per vehicle
 	private HashMap<Integer, Task> tasks_map;
 	private double cost_of_all_plans;
@@ -24,7 +24,7 @@ public class COPSolution {
 	public COPSolution(List<Vehicle> vehicles, List<Task> tasks) {
 		cost_of_all_plans = 0;
 		plans = new ArrayList<Plan>();
-		action_task_list = new LinkedHashMap<Vehicle, ArrayList<Action>>();
+		action_task_list = new LinkedHashMap<Vehicle, ArrayList<Integer>>();
 		vehicle_tasks = new LinkedHashMap<Vehicle, ArrayList<Task>>();
 		tasks_map = new HashMap<Integer, Task>();
 		
@@ -34,7 +34,7 @@ public class COPSolution {
 		int counter = 0;
 		for (Vehicle v : vehicles) {
 			// Add empty tasks
-			action_task_list.put(v, new ArrayList<Action>());
+			action_task_list.put(v, new ArrayList<Integer>());
 			vehicle_tasks.put(v, new ArrayList<Task>());
 			
 			// Add empty plan
@@ -53,7 +53,7 @@ public class COPSolution {
 		Vehicle biggest_vehicle = vehicles.get(index_of_biggest_capacity);
 		City current_city_for_vehicle = biggest_vehicle.getCurrentCity();
 		Plan new_plan = new Plan(current_city_for_vehicle);
-		ArrayList<Action> partial_actions_for_vehicle = new ArrayList<Action>();
+		ArrayList<Integer> partial_actions_for_vehicle = new ArrayList<Integer>();
 		ArrayList<Task> task_per_vehicle = new ArrayList<Task>();
 		for (Task t : tasks) {
 			// move: current city to pickup location
@@ -64,7 +64,7 @@ public class COPSolution {
             }
 
             new_plan.appendPickup(t);
-            partial_actions_for_vehicle.add(new Action.Pickup(t));
+            partial_actions_for_vehicle.add(t.id);
             
 
             // move: pickup location to delivery location
@@ -73,7 +73,7 @@ public class COPSolution {
             }
 
             new_plan.appendDelivery(t);
-            partial_actions_for_vehicle.add(new Action.Delivery(t));
+            partial_actions_for_vehicle.add(t.id + tasks.size());
 
             // set current city
             current_city_for_vehicle = t.deliveryCity;
@@ -93,7 +93,7 @@ public class COPSolution {
 	
 	public COPSolution(COPSolution s) {
 		plans = new ArrayList<Plan>();
-		action_task_list = new LinkedHashMap<Vehicle, ArrayList<Action>>();
+		action_task_list = new LinkedHashMap<Vehicle, ArrayList<Integer>>();
 		vehicle_tasks = new LinkedHashMap<Vehicle, ArrayList<Task>>();
 		
 		// Add plans
@@ -102,7 +102,7 @@ public class COPSolution {
 		}
 		
 		// Add action per tasks
-		for (Entry<Vehicle, ArrayList<Action>> entry : s.get_action_task_list().entrySet()) {
+		for (Entry<Vehicle, ArrayList<Integer>> entry : s.get_action_task_list().entrySet()) {
 			action_task_list.put(entry.getKey(), entry.getValue());
 		}
 		
@@ -143,7 +143,7 @@ public class COPSolution {
 	}
 	
 	
-	public HashMap<Vehicle, ArrayList<Action>> get_action_task_list() {
+	public HashMap<Vehicle, ArrayList<Integer>> get_action_task_list() {
 		return action_task_list;
 	}
 	

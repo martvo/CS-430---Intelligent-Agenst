@@ -89,7 +89,7 @@ public class CentralizedAgent implements CentralizedBehavior {
 	public COPSolution stochastic_local_search(COPSolution solution, List<Vehicle> v_list, TaskSet tasks) {
 		// Dette skal være inne i en while loop**********************
 		COPSolution old_s = solution;
-		Set<COPSolution> neighbours = ChooseNeighbours.getNeighbours(old_s, v_list, tasks);
+		List<COPSolution> neighbours = ChooseNeighbours.getNeighbours(old_s, v_list, tasks);
 		return null;
 	}
 
