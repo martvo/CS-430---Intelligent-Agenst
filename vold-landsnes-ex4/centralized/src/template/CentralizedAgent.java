@@ -96,6 +96,7 @@ public class CentralizedAgent implements CentralizedBehavior {
 		// for (int i = 0; i < vehicles.size(); i++) {
 			System.out.println(solution.get_action_task_list().get(v));
 		}
+		System.out.println(task_list);
 		return solution.get_plans();
 	}
 	

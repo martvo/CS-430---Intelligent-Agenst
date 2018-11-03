@@ -190,7 +190,8 @@ public class COPSolution {
 						new_plan.appendDelivery(int_to_task.get(i));
 					}
 				}
-				System.out.println(new_plan);
+				// System.out.println(int_to_task);
+				// System.out.println(new_plan);
 				this.plans.add(new_plan);
 			}
 		}
