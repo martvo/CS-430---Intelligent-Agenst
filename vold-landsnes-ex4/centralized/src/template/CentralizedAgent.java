@@ -75,12 +75,16 @@ public class CentralizedAgent implements CentralizedBehavior {
 		System.out.println("Initial cost is: " + solution.get_cost_of_solution());
 		
 		// Get the best solution for every run of the SLS algorithm
-		for (int i = 0; i < 10; i++) {
-			// System.out.println("Iteration " + (i + 1));
+		int counter = 0;
+		for (int i = 0; i < 999999999; i++) {
+			System.out.println("Iteration " + (i + 1));
 			// System.out.println("Initial total distance for current solution = " + solution.get_cost_of_solution());
-			solution = stochastic_local_search(solution, vehicles, task_list);
+			solution = stochastic_local_search(solution, vehicles, task_list, counter);
+			for (Vehicle v : vehicles) {
+				System.out.println(solution.get_action_task_list().get(v));
+			}
 			System.out.println();
-			
+			counter++;
 			if (System.currentTimeMillis() - time_start > timeout_plan - 100000) {
 				break;
 			}
@@ -98,9 +102,9 @@ public class CentralizedAgent implements CentralizedBehavior {
 	
 	
 	// Stochastic local search from the book
-	public COPSolution stochastic_local_search(COPSolution solution, List<Vehicle> v_list, List<Task> task_list) {
+	public COPSolution stochastic_local_search(COPSolution solution, List<Vehicle> v_list, List<Task> task_list, int counter) {
 		COPSolution old_s = solution;
-		List<COPSolution> neighbours = ChooseNeighbours.getNeighbours(old_s, v_list, task_list);
+		List<COPSolution> neighbours = ChooseNeighbours.getNeighbours(old_s, v_list, task_list, counter);
 		// System.out.println("neighbours size in SLS is " + neighbours.size());
 		COPSolution best_solution_from_neighbours = LocalChoice.getBestSolution(neighbours, old_s);
 		return best_solution_from_neighbours;

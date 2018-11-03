@@ -75,7 +75,7 @@ public class COPSolution {
             // set current city
             current_city_for_vehicle = t.deliveryCity;
 		}
-		System.out.println(new_plan);
+		// System.out.println(new_plan);
 		this.plans.set(index_of_biggest_capacity, new_plan);
 		action_task_list.replace(biggest_vehicle, partial_actions_for_vehicle);
 		vehicle_tasks.replace(biggest_vehicle, task_per_vehicle);
@@ -156,11 +156,15 @@ public class COPSolution {
 	}
 	
 	
-	public List<Integer> get_index_of_possible_next_vechile() {
+	public List<Integer> get_index_of_possible_next_vechile(int counter, List<Task> task_list) {
 		List<Integer> indexes = new ArrayList<Integer>();
-		for (int i = 0; i < this.plans.size(); i++) {
-			if (this.plans.get(i).totalDistance() > 0) {
-				indexes.add(i);
+		if (counter < task_list.size()) {
+			indexes.add(0);
+		} else {
+			for (int i = 0; i < this.plans.size(); i++) {
+				if (this.plans.get(i).totalDistance() > 0) {
+					indexes.add(i);
+				}
 			}
 		}
 		return indexes;
@@ -201,7 +205,7 @@ public class COPSolution {
 					}
 				}
 				// System.out.println(int_to_task);
-				System.out.println(new_plan);
+				// System.out.println(new_plan);
 				this.plans.add(new_plan);
 			}
 		}

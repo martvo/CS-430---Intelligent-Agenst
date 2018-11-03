@@ -1,17 +1,11 @@
 package template;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
 
-import logist.plan.Action;
-import logist.plan.Plan;
 import logist.simulation.Vehicle;
 import logist.task.Task;
-import logist.task.TaskSet;
 
 import template.COPSolution;
 
@@ -19,11 +13,11 @@ public class ChooseNeighbours {
 	
 	static Random r = new Random();
 	
-	public static List<COPSolution> getNeighbours(COPSolution A, List<Vehicle> v_list, List<Task> task_list) {
+	public static List<COPSolution> getNeighbours(COPSolution A, List<Vehicle> v_list, List<Task> task_list, int counter) {
 		List<COPSolution> neighbour_set = new ArrayList<COPSolution>();  // Want this to be a data structure that is easily sorted!
 		
 		// Choose one of the possible vehicles. A possible vehicle is one that don't have a plan with a distance of 0.0
-		List<Integer> possible_indexes = A.get_index_of_possible_next_vechile();
+		List<Integer> possible_indexes = A.get_index_of_possible_next_vechile(counter, task_list);
 		if (possible_indexes.isEmpty()) {
 			return neighbour_set;
 		}

@@ -3,15 +3,13 @@ package template;
 import java.util.List;
 import java.util.Random;
 
-import logist.plan.Plan;
-
 public class LocalChoice {
 	
-	static double p = 0.3;  // Probability of returning the old_A
+	static double p = 0.5;  // Probability of returning the old_A
 	
 	public static COPSolution getBestSolution(List<COPSolution> neighbours, COPSolution old_A) {
 		if (neighbours.size() == 0) {
-			// System.out.println("No neighbours to choose from......");
+			System.out.println("No neighbours to choose from......");
 			return old_A;
 		}
 		
@@ -21,7 +19,7 @@ public class LocalChoice {
 		double random_double = r.nextDouble();
 		
 		if (p >= random_double) {  // Returns old_A
-			// System.out.println("Chose old A");
+			System.out.println("Chose old A");
 			return old_A;
 		} else {  // Returns the best neighbor
 			for (COPSolution c : neighbours) {
@@ -30,7 +28,7 @@ public class LocalChoice {
 				}
 			}
 		}
-		// System.out.println("Cost of best solution after local choice=" + best.get_cost_of_solution());
+		System.out.println("Cost of best solution after local choice=" + best.get_cost_of_solution());
 		return best;
 	}
 
