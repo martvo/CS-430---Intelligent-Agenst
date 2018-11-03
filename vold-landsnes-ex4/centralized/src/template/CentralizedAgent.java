@@ -1,11 +1,9 @@
 package template;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
 
 import logist.LogistSettings;
 import logist.agent.Agent;
@@ -30,6 +28,8 @@ public class CentralizedAgent implements CentralizedBehavior {
     private Random random;
 	
 	private List<Plan> best_solution;
+	private HashMap<Task, Integer> tasks_map;
+	private HashMap<Integer, Task> int_to_task;
 	
 
 	@Override
@@ -53,10 +53,8 @@ public class CentralizedAgent implements CentralizedBehavior {
         this.distribution = distribution;
         this.agent = agent;
         
-		// Define X, D, C and f
-		
-		// then do:
-		// best_solution = select_initial_solution();		
+        tasks_map = new HashMap<Task, Integer>();
+		int_to_task = new HashMap<Integer, Task>();	
 	}
 	
 	
@@ -72,25 +70,43 @@ public class CentralizedAgent implements CentralizedBehavior {
 		
 		List<Task> task_list = new ArrayList<Task>();
 		for (Task t : tasks) {
+			tasks_map.put(t, t.id);
+			int_to_task.put(t.id, t);
 			task_list.add(t);
 		}
 		COPSolution solution = new COPSolution(vehicles, task_list);
 		
-		// Dette skal være i en while loop*******************
-		solution = stochastic_local_search(solution, vehicles, tasks);
+		// Get the best solution for every run of the SLS algorithm
+		for (int i = 0; i < 2; i++) {
+			System.out.println("Iteration " + (i + 1));
+			System.out.println("Initial total distance for current solution = " + solution.get_cost_of_solution());
+			solution = stochastic_local_search(solution, vehicles, tasks, tasks_map, int_to_task);
+			System.out.println();
+			
+			if (System.currentTimeMillis() - time_start > timeout_plan - 290000) {
+				break;
+			}
+		}
 		
 		long duration = System.currentTimeMillis() - time_start;
 		System.out.println("The plan was generated in " + duration + " milliseconds.");
+		System.out.println("The number of plans: " + solution.get_plans().size());
+		System.out.println("The plan is:");
+		for (Vehicle v : vehicles) {
+		// for (int i = 0; i < vehicles.size(); i++) {
+			System.out.println(solution.get_action_task_list().get(v));
+		}
 		return solution.get_plans();
 	}
 	
 	
 	// Stochastic local search from the book
-	public COPSolution stochastic_local_search(COPSolution solution, List<Vehicle> v_list, TaskSet tasks) {
-		// Dette skal være inne i en while loop**********************
+	public COPSolution stochastic_local_search(COPSolution solution, List<Vehicle> v_list, TaskSet tasks, HashMap<Task, Integer> tm_map, HashMap<Integer, Task> it_map) {
 		COPSolution old_s = solution;
-		List<COPSolution> neighbours = ChooseNeighbours.getNeighbours(old_s, v_list, tasks);
-		return null;
+		List<COPSolution> neighbours = ChooseNeighbours.getNeighbours(old_s, v_list, tasks, tm_map, it_map);
+		System.out.println("neighbours size in SLS is " + neighbours.size());
+		COPSolution best_solution_from_neighbours = LocalChoice.getBestSolution(neighbours, old_s);
+		return best_solution_from_neighbours;
 	}
 
 }
