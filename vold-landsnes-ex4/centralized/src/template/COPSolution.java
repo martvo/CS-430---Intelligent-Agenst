@@ -18,11 +18,12 @@ public class COPSolution {
 	private LinkedHashMap<Vehicle, ArrayList<Task>> vehicle_tasks;  // Keeps the task per vehicle
 	private double cost_of_all_plans;
 	
-	
-	public COPSolution(List<Vehicle> vehicles, List<Task> tasks) {
+	public COPSolution(List<Vehicle> vehicles, List<Task> task_list) {
 		cost_of_all_plans = 0;
 		this.plans = new ArrayList<Plan>();
 		action_task_list = new LinkedHashMap<Vehicle, ArrayList<Integer>>();
+		
+		// Sjå på om den hær kan fjernes også... trenger den egentlig ikke
 		vehicle_tasks = new LinkedHashMap<Vehicle, ArrayList<Task>>();
 		
 		// Create an empty plan for all vehicles and find the vehicle with the biggest capacity
@@ -52,7 +53,7 @@ public class COPSolution {
 		Plan new_plan = new Plan(current_city_for_vehicle);
 		ArrayList<Integer> partial_actions_for_vehicle = new ArrayList<Integer>();
 		ArrayList<Task> task_per_vehicle = new ArrayList<Task>();
-		for (Task t : tasks) {
+		for (Task t : task_list) {
 			// move: current city to pickup location
 			task_per_vehicle.add(t);
             for (City city : current_city_for_vehicle.pathTo(t.pickupCity)) {
@@ -69,7 +70,7 @@ public class COPSolution {
             }
 
             new_plan.appendDelivery(t);
-            partial_actions_for_vehicle.add(t.id + tasks.size());
+            partial_actions_for_vehicle.add(t.id + task_list.size());
 
             // set current city
             current_city_for_vehicle = t.deliveryCity;
@@ -166,38 +167,49 @@ public class COPSolution {
 	}
 	
 	
-	public void build_plan(HashMap<Integer, Task> int_to_task, List<Vehicle> v_list) {
+	// Buid the plans for this solution
+	public boolean build_plan(List<Vehicle> v_list, List<Task> task_list) {
 		// List<Plan> new_plans = new ArrayList<Plan>();
+		boolean correct = true;
+		int number_of_tasks = task_list.size();
 		for (Vehicle v : v_list) {
 			City cur_city = v.getCurrentCity();
 			Plan new_plan = new Plan(cur_city);
-			System.out.println(action_task_list.get(v));
+			// System.out.println(action_task_list.get(v));
 			if (action_task_list.get(v).isEmpty()) {  // Add empty plan for vehicles with empty action_task_list
 				this.plans.add(Plan.EMPTY);
 			} else {
+				int capacity = v.capacity();
 				for (Integer i : action_task_list.get(v)) {
-					if (i < int_to_task.size()) {  // pickup 
-						for (City cp : cur_city.pathTo(int_to_task.get(i).pickupCity)) {
+					if (i < task_list.size()) {  // pickup 
+						capacity -= task_list.get(i).weight;
+						for (City cp : cur_city.pathTo(task_list.get(i).pickupCity)) {
 							new_plan.appendMove(cp);
 						}
-						cur_city = int_to_task.get(i).pickupCity;
-						new_plan.appendPickup(int_to_task.get(i));
+						cur_city = task_list.get(i).pickupCity;
+						new_plan.appendPickup(task_list.get(i));
 					} else {  // Delivery
-						for (City cd : cur_city.pathTo(int_to_task.get(i % int_to_task.size()).deliveryCity)) {
+						capacity += task_list.get(i % number_of_tasks).weight;
+						for (City cd : cur_city.pathTo(task_list.get(i % number_of_tasks).deliveryCity)) {
 							new_plan.appendMove(cd);
 						}
-						cur_city = int_to_task.get(i % int_to_task.size()).deliveryCity;
-						new_plan.appendDelivery(int_to_task.get(i));
+						cur_city = task_list.get(i % number_of_tasks).deliveryCity;
+						new_plan.appendDelivery(task_list.get(i % number_of_tasks));
+					}
+					if (capacity < 0) {
+						return false;
 					}
 				}
 				// System.out.println(int_to_task);
-				// System.out.println(new_plan);
+				System.out.println(new_plan);
 				this.plans.add(new_plan);
 			}
 		}
 		// plans = new_plans;
 		set_solution_cost(this.plans, v_list);
-		System.out.println("Cost of this solution: " + cost_of_all_plans);
+		// System.out.println("Cost of this solution: " + cost_of_all_plans);
+		
+		return correct;
 	}
-
+	
 }
