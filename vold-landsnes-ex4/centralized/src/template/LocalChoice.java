@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class LocalChoice {
 	
-	static double p = 0.5;  // Probability of returning the old_A
+	static double p = 0.4;  // Probability of returning the old_A
 	
 	public static COPSolution getBestSolution(List<COPSolution> neighbours, COPSolution old_A) {
 		if (neighbours.size() == 0) {

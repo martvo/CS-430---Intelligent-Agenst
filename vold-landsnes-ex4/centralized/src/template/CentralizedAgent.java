@@ -76,7 +76,7 @@ public class CentralizedAgent implements CentralizedBehavior {
 		
 		// Get the best solution for every run of the SLS algorithm
 		int counter = 0;
-		for (int i = 0; i < 999999999; i++) {
+		for (int i = 0; i < 5000; i++) {
 			System.out.println("Iteration " + (i + 1));
 			// System.out.println("Initial total distance for current solution = " + solution.get_cost_of_solution());
 			solution = stochastic_local_search(solution, vehicles, task_list, counter);

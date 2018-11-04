@@ -159,6 +159,7 @@ public class COPSolution {
 	public List<Integer> get_index_of_possible_next_vechile(int counter, List<Task> task_list) {
 		List<Integer> indexes = new ArrayList<Integer>();
 		if (counter < task_list.size()) {
+			// This has to be changed to the vehicle with the largest plan
 			indexes.add(0);
 		} else {
 			for (int i = 0; i < this.plans.size(); i++) {

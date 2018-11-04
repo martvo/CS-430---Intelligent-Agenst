@@ -44,7 +44,7 @@ public class ChooseNeighbours {
 						// Builds plan for the neighbors, they should all work....
 						boolean possible = s.build_plan(v_list, task_list);
 						// System.out.println("Cost for this neighbour: " + s.get_cost_of_solution());
-						if (possible && s.get_cost_of_solution() <= A.get_cost_of_solution()) {
+						if (possible && s.get_cost_of_solution() < A.get_cost_of_solution()) {
 							neighbour_set.add(s);
 						}
 					}
