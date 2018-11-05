@@ -38,10 +38,14 @@ public class ChooseNeighbours {
 				
 				// Check if the randomly chosen task fits
 				if (other_v.capacity() >= random_task.weight) {
+					
 					ArrayList<COPSolution> neighbors_list = change_vehicle(A, random_task, chosen_vehicle, other_v, v_list, task_list);
+					
+					System.out.println("Neighbour list is: " + neighbors_list);
 					// System.out.println("Size for returned neightbour list " + neighbors_list.size());
 					for (COPSolution s : neighbors_list) {
 						// Builds plan for the neighbors, they should all work....
+						System.out.println("A solution from martin is :" + s.get_action_task_list().get(chosen_vehicle));
 						boolean possible = s.build_plan(v_list, task_list);
 						// System.out.println("Cost for this neighbour: " + s.get_cost_of_solution());
 						if (possible && s.get_cost_of_solution() < A.get_cost_of_solution()) {
@@ -49,7 +53,42 @@ public class ChooseNeighbours {
 						}
 					}
 				}
+				
+				
 			}
+			
+			//This loop is for sorting 
+			int tasks_of_vehicle = A.get_task_per_vehicle().get(chosen_vehicle).size();
+			ArrayList<Task> choosen_task_list = A.get_task_per_vehicle().get(chosen_vehicle);
+			for(Task task:A.get_task_per_vehicle().get(chosen_vehicle)) {
+				
+				ArrayList<COPSolution> sorted_neighbours = change_task_order_vehicle(A, task, chosen_vehicle, task_list);
+				//System.out.println("call nr:" + lol + " of order changer");
+				
+				//System.out.println(sorted_neighbours);
+				for (COPSolution s : sorted_neighbours) {
+					// Builds plan for the neighbors, they should all work....
+					//System.out.println("now before the the possible function");
+					boolean possible = s.build_plan(v_list, task_list);
+					// System.out.println("Cost for this neighbour: " + s.get_cost_of_solution());
+					//System.out.println("Passed the possible function with value of, pssible =" + possible);
+					if (possible && s.get_cost_of_solution() < A.get_cost_of_solution()) {
+					//	System.out.println("Passed into the if sentence, now adding to neighbours");
+						neighbour_set.add(s);
+					//	System.out.println("Now added to the neighbour");
+					}
+				}
+				
+			}
+			/*
+			//other_neighbours = change_task_order_vehicle(A, random_task, chosen_vehicle, task_list);
+			ArrayList<Task> choosen_task_list = A.get_task_per_vehicle().get(chosen_vehicle);
+			int random_task_index = r.nextInt(choosen_task_list.size());
+			Task random_task = choosen_task_list.get(random_task_index);
+			System.out.println("Det random task is " + random_task + " with id: " + random_task.id);
+			ArrayList<COPSolution> sorted_neighbours = change_task_order_vehicle_2(A, random_task, chosen_vehicle, task_list);
+			*/
+			
 		}
 		// System.out.println("Size of the final neighbour list " + neighbour_set.size());
 		return neighbour_set;
@@ -160,6 +199,131 @@ public class ChooseNeighbours {
 		}
 		return neighbours;
 	}
+	
+	
 
 
+public static ArrayList<COPSolution> change_task_order_vehicle(COPSolution old_A, Task t, Vehicle chosen_vehicle, List<Task> task_list) {
+	
+	ArrayList<COPSolution> neighbours = new ArrayList<COPSolution>();
+	ArrayList<Integer> action_list = old_A.get_action_task_list().get(chosen_vehicle);		 
+	int number_of_tasks = task_list.size();
+//Change order of pickups and deliveries and return a list of different solutions. 
+	
+	//If no tasks, nothing to change order of 
+	if (old_A.get_task_per_vehicle().get(chosen_vehicle).isEmpty()) {
+		COPSolution new_A = new COPSolution(old_A);				
+		neighbours.add(new_A);
+		System.out.println("Empty taskset discovered in change_task_order");
+		return neighbours;
+		
+	}	
+	
+	//Tasks exists for chosen_vehicle		
+	else {
+		
+		int action_task_size = old_A.get_action_task_list().get(chosen_vehicle).size(); 
+		Integer task_id = t.id;
+		
+		//Get index 
+		int pickup_index = -1;
+		int deliver_index = -1;
+		for (int x = 0; x < action_task_size; x++) {
+			if (old_A.get_action_task_list().get(chosen_vehicle).get(x) == task_id) {
+				pickup_index = x;
+			} else if (old_A.get_action_task_list().get(chosen_vehicle).get(x) == (task_id + number_of_tasks)) {
+				deliver_index = x ;
+			}
+		}
+		
+		COPSolution A_gen = new COPSolution(old_A);
+		
+		System.out.println("The indexes's to be changed are pickup: " + pickup_index + "and delivery: " + deliver_index);
+		System.out.println("Before reordering" + A_gen.get_action_task_list().get(chosen_vehicle));
+		//System.out.println("Before reordering" + new_A.get_action_task_list().get(chosen_vehicle).size());
+		
+		//new_A.get_action_task_list().get(chosen_vehicle).remove(deliver_index);
+		//new_A.get_action_task_list().get(chosen_vehicle).add(task_id + number_of_tasks);
+		
+		System.out.println("After reordering" + A_gen.get_action_task_list().get(chosen_vehicle));
+		
+		
+		
+		for (int i = pickup_index; i < action_task_size-1; i++) {  //			
+			
+			//We're at first iteration, wait to sort 
+			if(i == pickup_index) {
+				//System.out.println("In the i == pickup_index");
+			}
+			else if(i == action_task_size - 1) {
+				//No more solutions, pickup is at second last index		
+				
+				return neighbours;				
+			}
+			else{ //Don't try to access -1 element if pickup_index == 0 
+				
+				//Swap indexes
+				
+				Integer task_index_p = A_gen.get_action_task_list().get(chosen_vehicle).get(i-1);
+				Integer task_index_d = A_gen.get_action_task_list().get(chosen_vehicle).get(i);
+				Integer next_index_p = A_gen.get_action_task_list().get(chosen_vehicle).get(i+1);
+				
+				
+				A_gen.get_action_task_list().get(chosen_vehicle).remove(i+1);
+				A_gen.get_action_task_list().get(chosen_vehicle).add(i+1,task_index_d);
+				
+				A_gen.get_action_task_list().get(chosen_vehicle).remove(i);
+				A_gen.get_action_task_list().get(chosen_vehicle).add(i,task_index_p);
+				
+					
+				A_gen.get_action_task_list().get(chosen_vehicle).remove(i-1);
+				A_gen.get_action_task_list().get(chosen_vehicle).add(i-1, next_index_p);
+				
+				//A_gen.get_action_task_list().get(chosen_vehicle).remove(i+1);
+				//A_gen.get_action_task_list().get(chosen_vehicle).add(i+1, task_index_p);
+				
+				//Create new solution to remember the last swap for future iterations
+				//System.out.println("After modifications " + A_gen.get_action_task_list().get(chosen_vehicle));
+				
+			}
+			//
+			COPSolution A_mem_p = new COPSolution(A_gen);
+			COPSolution A_mem_d = new COPSolution(A_mem_p);
+			neighbours.add(A_mem_p);
+			
+						
+			System.out.println("In first loop sorting process " + A_mem_d.get_action_task_list().get(chosen_vehicle));
+			for (int j = i +1; j < action_task_size-1; j++) {  //+i to not deliver before pickup, -1 to be in range			
+				
+				
+				
+				//Swap indexes
+				Integer task_index_d = A_mem_d.get_action_task_list().get(chosen_vehicle).get(j);
+				Integer change_index_d = A_mem_d.get_action_task_list().get(chosen_vehicle).get(j+1);
+				
+				A_mem_d.get_action_task_list().get(chosen_vehicle).remove(j+1);
+				A_mem_d.get_action_task_list().get(chosen_vehicle).add(j+1, task_index_d);
+				A_mem_d.get_action_task_list().get(chosen_vehicle).remove(j);
+				A_mem_d.get_action_task_list().get(chosen_vehicle).add(j, change_index_d);
+				
+				
+				
+				
+				//System.out.println("In sorting process " + A_mem_d.get_action_task_list().get(chosen_vehicle));
+				neighbours.add(A_mem_d);
+			}
+		}
+		return neighbours; 
+	}
+
+
+	}
 }
+
+		
+		
+
+	
+
+
+

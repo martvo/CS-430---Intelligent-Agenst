@@ -37,7 +37,7 @@ public class CentralizedAgent implements CentralizedBehavior {
 		// this code is used to get the timeouts
         LogistSettings ls = null;
         try {
-            ls = Parsers.parseSettings("config\\settings_default.xml");
+            ls = Parsers.parseSettings("config//settings_default.xml");
         }
         catch (Exception exc) {
             System.out.println("There was a problem loading the configuration file.");
@@ -76,7 +76,7 @@ public class CentralizedAgent implements CentralizedBehavior {
 		
 		// Get the best solution for every run of the SLS algorithm
 		int counter = 0;
-		for (int i = 0; i < 5000; i++) {
+		for (int i = 0; i < 2; i++) {
 			System.out.println("Iteration " + (i + 1));
 			// System.out.println("Initial total distance for current solution = " + solution.get_cost_of_solution());
 			solution = stochastic_local_search(solution, vehicles, task_list, counter);

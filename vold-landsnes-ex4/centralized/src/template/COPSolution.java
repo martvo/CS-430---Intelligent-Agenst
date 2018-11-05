@@ -3,6 +3,7 @@ package template;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -23,7 +24,7 @@ public class COPSolution {
 		this.plans = new ArrayList<Plan>();
 		action_task_list = new LinkedHashMap<Vehicle, ArrayList<Integer>>();
 		
-		// Sjå på om den hær kan fjernes også... trenger den egentlig ikke
+		// Sjï¿½ pï¿½ om den hï¿½r kan fjernes ogsï¿½... trenger den egentlig ikke
 		vehicle_tasks = new LinkedHashMap<Vehicle, ArrayList<Task>>();
 		
 		// Create an empty plan for all vehicles and find the vehicle with the biggest capacity
@@ -79,6 +80,8 @@ public class COPSolution {
 		this.plans.set(index_of_biggest_capacity, new_plan);
 		action_task_list.replace(biggest_vehicle, partial_actions_for_vehicle);
 		vehicle_tasks.replace(biggest_vehicle, task_per_vehicle);
+		//action_task_list).replace(biggest_vehicle, partial_actions_for_vehicle);
+		//vehicle_tasks.replace(biggest_vehicle, partial_actions_for_vehicle);
 		
 		// Add the cost for this COPSolution
 		set_solution_cost(this.plans, vehicles);
@@ -123,8 +126,11 @@ public class COPSolution {
 	
 	public double set_solution_cost(List<Plan> plan_list, List<Vehicle> v_list) {
 		double set_value = 0;
+		//System.out.println(plan_list);
 			for (int i = 0; i < plan_list.size(); i++) {
+				//System.out.println(plan_list.get(i));
 				set_value += (plan_list.get(i).totalDistance() * v_list.get(i).costPerKm());
+				//System.out.println(plan_list.get(i).totalDistance());
 			}
 		this.cost_of_all_plans = set_value;
 		return set_value;
@@ -178,9 +184,10 @@ public class COPSolution {
 		boolean correct = true;
 		int number_of_tasks = task_list.size();
 		for (Vehicle v : v_list) {
+			//System.out.println("Vehicle v is :" + v);
 			City cur_city = v.getCurrentCity();
 			Plan new_plan = new Plan(cur_city);
-			// System.out.println(action_task_list.get(v));
+			 //System.out.println(action_task_list.get(v));
 			if (action_task_list.get(v).isEmpty()) {  // Add empty plan for vehicles with empty action_task_list
 				this.plans.add(Plan.EMPTY);
 			} else {
