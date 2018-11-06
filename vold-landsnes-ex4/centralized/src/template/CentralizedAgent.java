@@ -76,20 +76,23 @@ public class CentralizedAgent implements CentralizedBehavior {
 		
 		// Get the best solution for every run of the SLS algorithm
 		int counter = 0;
-		for (int i = 0; i < 2; i++) {
+		double init_cost = solution.get_cost_of_solution();
+		for (int i = 0; i < 999999999; i++) {
 			System.out.println("Iteration " + (i + 1));
 			// System.out.println("Initial total distance for current solution = " + solution.get_cost_of_solution());
 			solution = stochastic_local_search(solution, vehicles, task_list, counter);
+			/*
 			for (Vehicle v : vehicles) {
 				System.out.println(solution.get_action_task_list().get(v));
 			}
 			System.out.println();
+			*/
 			counter++;
-			if (System.currentTimeMillis() - time_start > timeout_plan - 100000) {
+			if (System.currentTimeMillis() - time_start > timeout_plan - 200000) {
 				break;
 			}
 		}
-		
+		System.out.println("Init cost = " + init_cost);
 		long duration = System.currentTimeMillis() - time_start;
 		System.out.println("The plan was generated in " + duration + " milliseconds.");
 		System.out.println("The plan has a cost of: " + solution.get_cost_of_solution() +  "! and is:");

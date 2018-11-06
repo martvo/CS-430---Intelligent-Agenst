@@ -126,10 +126,15 @@ public class COPSolution {
 	
 	public double set_solution_cost(List<Plan> plan_list, List<Vehicle> v_list) {
 		double set_value = 0;
-		//System.out.println(plan_list);
+		
+		//System.out.println("Plan size is :" + plan_list.size());
+		//System.out.println("Plan is :" + plan_list);
 			for (int i = 0; i < plan_list.size(); i++) {
-				//System.out.println(plan_list.get(i));
+				//System.out.println("The plan size is: " + plan_list.size());
+				//System.out.println("The vehicle size is: " + v_list.size());
+				//System.out.println("The current plan is " + plan_list.get(i));
 				set_value += (plan_list.get(i).totalDistance() * v_list.get(i).costPerKm());
+				
 				//System.out.println(plan_list.get(i).totalDistance());
 			}
 		this.cost_of_all_plans = set_value;
@@ -166,6 +171,9 @@ public class COPSolution {
 		List<Integer> indexes = new ArrayList<Integer>();
 		if (counter < task_list.size()) {
 			// This has to be changed to the vehicle with the largest plan
+			/*for (int i = 0; i < counter; i++) {
+				
+			}*/
 			indexes.add(0);
 		} else {
 			for (int i = 0; i < this.plans.size(); i++) {
@@ -218,6 +226,7 @@ public class COPSolution {
 			}
 		}
 		// plans = new_plans;
+		//System.out.println("Plan sent to solution cost calculation " + this.plans);
 		set_solution_cost(this.plans, v_list);
 		// System.out.println("Cost of this solution: " + cost_of_all_plans);
 		
