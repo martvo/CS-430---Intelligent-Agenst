@@ -1,7 +1,6 @@
 package template;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -27,7 +26,6 @@ public class CentralizedAgent implements CentralizedBehavior {
     private long timeout_plan;
     private Random random;
 	
-	private List<Plan> best_solution;
 	private List<Task> task_list;
 	
 	private ChooseNeighbours cn;
@@ -81,32 +79,25 @@ public class CentralizedAgent implements CentralizedBehavior {
 		COPSolution best_solution = new COPSolution(solution);
 		best_solution.build_plan(vehicles, task_list);
 		
-		System.out.println("Initial cost is: " + solution.get_cost_of_solution());
-		
 		// Get the best solution for every run of the SLS algorithm
 		double counter = 0;
 		double init_cost = solution.get_cost_of_solution();
 		for (int i = 0; i < 999999999; i++) {
 			System.out.println("Iteration " + (i + 1));
-			// System.out.println("Initial total distance for current solution = " + solution.get_cost_of_solution());
+
 			solution = stochastic_local_search(solution, vehicles, task_list, counter);
 			
 			if (best_solution.get_cost_of_solution() > solution.get_cost_of_solution()) {
 				best_solution = new COPSolution(solution);
 				best_solution.build_plan(vehicles, task_list);
 			}
-			/*
-			for (Vehicle v : vehicles) {
-				System.out.println(solution.get_action_task_list().get(v));
-			}
-			System.out.println();
-			*/
+
 			counter += 1;
 			if (System.currentTimeMillis() - time_start > timeout_plan - 200000) {
 				break;
 			}
 		}
-		System.out.println("Init cost = " + init_cost);
+		System.out.println("Initial cost = " + init_cost);
 		long duration = System.currentTimeMillis() - time_start;
 		System.out.println("The plan was generated in " + duration + " milliseconds.");
 		System.out.println("The best plan has a cost of: " + best_solution.get_cost_of_solution() +  "! and is:");

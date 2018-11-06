@@ -6,7 +6,7 @@ import java.util.Random;
 public class LocalChoice {
 	
 	Random r = new Random(1234);
-	private double p = 0.2;  // Probability of returning the old_A
+	private double p = 0.3;  // Probability of returning the old_A
 	
 	public  COPSolution getBestSolution(List<COPSolution> neighbours, COPSolution old_A, double temp) {
 		if (neighbours.size() == 0) {
