@@ -65,16 +65,14 @@ public class ChooseNeighbours {
 				
 			}
 			
-			if (counter > (3 * task_list.size())) {
-				ArrayList<COPSolution> sorted_neighbours = change_task_order_vehicle(A, random_task, chosen_vehicle, task_list);
-				
-				for (COPSolution s : sorted_neighbours) {
+			ArrayList<COPSolution> sorted_neighbours = change_task_order_vehicle(A, random_task, chosen_vehicle, task_list);
+			
+			for (COPSolution s : sorted_neighbours) {
 
-					boolean possible = s.build_plan(v_list, task_list);
+				boolean possible = s.build_plan(v_list, task_list);
 
-					if (possible && s.get_cost_of_solution() < (1.2 * A.get_cost_of_solution())) {
-						neighbour_set.add(s);
-					}
+				if (possible && s.get_cost_of_solution() < (1.2 * A.get_cost_of_solution())) {
+					neighbour_set.add(s);
 				}
 			}
 		}
