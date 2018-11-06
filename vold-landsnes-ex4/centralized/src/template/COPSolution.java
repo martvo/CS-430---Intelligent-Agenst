@@ -167,21 +167,30 @@ public class COPSolution {
 	}
 	
 	
-	public List<Integer> get_index_of_possible_next_vechile(int counter, List<Task> task_list) {
+	public List<Integer> get_index_of_possible_next_vechile(double counter, List<Task> task_list) {
 		List<Integer> indexes = new ArrayList<Integer>();
-		if (counter < task_list.size()) {
-			// This has to be changed to the vehicle with the largest plan
-			/*for (int i = 0; i < counter; i++) {
-				
-			}*/
-			indexes.add(0);
-		} else {
-			for (int i = 0; i < this.plans.size(); i++) {
-				if (this.plans.get(i).totalDistance() > 0) {
-					indexes.add(i);
+		/* This can be used, but we decided on not.
+		if (counter < (5 * task_list.size())) {
+			int i = 0;
+			int index = -1;
+			int task_num = 0;
+			for (Entry<Vehicle, ArrayList<Task>> entry : vehicle_tasks.entrySet()) {
+				if (task_num < entry.getValue().size()) {
+					task_num = entry.getValue().size();
+					index = i;
 				}
+				i++;
+			}
+			indexes.add(index);
+		} else { */
+		
+		for (int i = 0; i < this.plans.size(); i++) {
+			if (this.plans.get(i).totalDistance() > 0) {
+				indexes.add(i);
 			}
 		}
+		
+
 		return indexes;
 	}
 	
