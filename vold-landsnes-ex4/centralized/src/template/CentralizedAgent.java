@@ -93,7 +93,7 @@ public class CentralizedAgent implements CentralizedBehavior {
 			}
 
 			counter += 1;
-			if (System.currentTimeMillis() - time_start > timeout_plan) {
+			if (System.currentTimeMillis() - time_start > timeout_plan-1000) {
 				break;
 			}
 		}
