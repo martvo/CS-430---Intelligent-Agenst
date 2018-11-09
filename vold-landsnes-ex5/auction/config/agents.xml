@@ -9,4 +9,9 @@
 		<set class-name="template.AuctionTemplate"/>
 	</agent>
 	
+	<agent name="auction-main">
+		<set class-path="bin/"/>
+		<set class-name="template.AuctionAgent"/>
+	</agent>
+	
 </agents>
