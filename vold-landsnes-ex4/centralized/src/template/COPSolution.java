@@ -128,6 +128,7 @@ public class COPSolution {
 	}
 	
 	
+	
 	public double get_cost_of_solution() {
 		return cost_of_all_plans;
 	}

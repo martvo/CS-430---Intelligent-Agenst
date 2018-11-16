@@ -226,7 +226,3 @@ public class ChooseNeighbours {
 	}
 		
 }
-	
-
-
-
