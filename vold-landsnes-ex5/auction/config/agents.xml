@@ -9,7 +9,7 @@
 		<set class-name="template.AuctionRandom"/>
 	</agent>
 	
-	<agent name="auction-main">
+	<agent name="auction-main-21">
 		<set class-path="bin/"/>
 		<set class-name="template.AuctionAgent"/>
 	</agent>
