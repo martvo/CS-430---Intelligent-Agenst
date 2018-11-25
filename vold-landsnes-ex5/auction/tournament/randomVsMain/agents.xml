@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<agents>
+	<!-- An auto-generated list of agents and their behavior classes -->
+	<!--  - jar directory : .\agents/ -->
+	<!--  - generated on  : Sun Nov 25 17:34:44 CET 2018 -->
+  <agent name="auction-random">
+    <set class-path="bin/"/>
+    <set class-name="template.AuctionRandom"/>
+  </agent>
+
+  <agent name="auction-main">
+    <set class-path="bin/"/>
+    <set class-name="template.AuctionAgent"/>
+  </agent>
+</agents>

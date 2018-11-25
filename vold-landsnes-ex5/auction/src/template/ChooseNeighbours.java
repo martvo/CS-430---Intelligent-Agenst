@@ -22,7 +22,7 @@ Random r = new Random(1234);
 	}
 	
 	
-	public List<Solution> getNeighbours(Solution A, List<Vehicle> v_list, List<Task> task_list, double counter) {
+	public List<Solution> getNeighbours(Solution A, List<Vehicle> v_list, List<Task> task_list, double counter, int tasks_auctioned) {
 		List<Solution> neighbour_set = new ArrayList<Solution>();  // Want this to be a data structure that is easily sorted!
 		
 		// Choose one of the possible vehicles. A possible vehicle is one that don't have a plan with a distance of 0.0
@@ -48,11 +48,11 @@ Random r = new Random(1234);
 				// Check if the randomly chosen task fits
 				if (other_v.capacity() >= random_task.weight) {
 					
-					ArrayList<Solution> neighbors_list = change_vehicle(A, random_task, chosen_vehicle, other_v, v_list, task_list);
+					ArrayList<Solution> neighbors_list = change_vehicle(A, random_task, chosen_vehicle, other_v, v_list, task_list, tasks_auctioned);
 
 					for (Solution s : neighbors_list) {
 						// Builds plan for the neighbors, they should all work....
-						boolean possible = s.build_plan(v_list, task_list);
+						boolean possible = s.build_plan(v_list, task_list, tasks_auctioned);
 
 						if (possible && s.get_cost_of_solution() < (1.2 * A.get_cost_of_solution())) {
 							neighbour_set.add(s);
@@ -63,11 +63,11 @@ Random r = new Random(1234);
 				
 			}
 			
-			ArrayList<Solution> sorted_neighbours = change_task_order_vehicle(A, random_task, chosen_vehicle, task_list);
+			ArrayList<Solution> sorted_neighbours = change_task_order_vehicle(A, random_task, chosen_vehicle, task_list, tasks_auctioned);
 			
 			for (Solution s : sorted_neighbours) {
 
-				boolean possible = s.build_plan(v_list, task_list);
+				boolean possible = s.build_plan(v_list, task_list, tasks_auctioned);
 
 				if (possible && s.get_cost_of_solution() < (1.2 * A.get_cost_of_solution())) {
 					neighbour_set.add(s);
@@ -78,9 +78,10 @@ Random r = new Random(1234);
 	}
 	
 	
-	public ArrayList<Solution> change_vehicle(Solution old_A, Task t, Vehicle chosen_vehicle, Vehicle other_vehicle, List<Vehicle> v_list, List<Task> task_list) {
+	public ArrayList<Solution> change_vehicle(Solution old_A, Task t, Vehicle chosen_vehicle, Vehicle other_vehicle, List<Vehicle> v_list, List<Task> task_list, 
+			int tasks_auctioned) {
 		ArrayList<Solution> neighbours = new ArrayList<Solution>();
-		int number_of_tasks = task_list.size();
+		int number_of_tasks = tasks_auctioned;
 		
 		// If the vehicle don't have any task, just add them if there is place
 		if (old_A.get_task_per_vehicle().get(other_vehicle).isEmpty()) {
@@ -163,11 +164,11 @@ Random r = new Random(1234);
 	
 
 
-	public  ArrayList<Solution> change_task_order_vehicle(Solution old_A, Task t, Vehicle chosen_vehicle, List<Task> task_list) {
+	public  ArrayList<Solution> change_task_order_vehicle(Solution old_A, Task t, Vehicle chosen_vehicle, List<Task> task_list, int tasks_auctioned) {
 		
 		ArrayList<Solution> neighbours = new ArrayList<Solution>();
 		// ArrayList<Integer> action_list = old_A.get_action_task_list().get(chosen_vehicle);		 
-		int number_of_tasks = task_list.size();
+		int number_of_tasks = tasks_auctioned;
 		//Change order of pickups and deliveries and return a list of different solutions. 
 		
 		//If no tasks, nothing to change order of 

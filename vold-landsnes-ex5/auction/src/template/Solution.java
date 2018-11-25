@@ -21,7 +21,7 @@ public class Solution {
 	
 	private List<Vehicle> vehicles;
 	
-	public Solution(List<Vehicle> vehicles, List<Task> task_list) {
+	public Solution(List<Vehicle> vehicles, List<Task> task_list, int tasks_auctioned) {
 		cost_of_all_plans = 0;
 		this.plans = new ArrayList<Plan>();
 		action_task_list = new LinkedHashMap<Vehicle, ArrayList<Integer>>();
@@ -48,7 +48,7 @@ public class Solution {
 			}
 			counter++;
 		}
-		
+
 		// Add each task to the vehicle with the biggest capacity
 		biggest_vehicle = vehicles.get(index_of_biggest_capacity);
 		City current_city_for_vehicle = biggest_vehicle.getCurrentCity();
@@ -72,7 +72,7 @@ public class Solution {
             }
 
             new_plan.appendDelivery(t);
-            partial_actions_for_vehicle.add(t.id + task_list.size());
+            partial_actions_for_vehicle.add(t.id + tasks_auctioned);
 
             // set current city
             current_city_for_vehicle = t.deliveryCity;
@@ -114,6 +114,7 @@ public class Solution {
 		
 		// Add cost
 		cost_of_all_plans = s.get_cost_of_solution();
+		
 	}
 	
 	
@@ -161,17 +162,16 @@ public class Solution {
 				indexes.add(i);
 			}
 		}
-		
 
 		return indexes;
 	}
 	
 	
 	// Build the plans for this solution
-	public boolean build_plan(List<Vehicle> v_list, List<Task> task_list) {
+	public boolean build_plan(List<Vehicle> v_list, List<Task> task_list, int tasks_auctioned) {
 		// List<Plan> new_plans = new ArrayList<Plan>();
 		boolean correct = true;
-		int number_of_tasks = task_list.size();
+		int number_of_tasks = tasks_auctioned;
 		for (Vehicle v : v_list) {
 
 			City cur_city = v.getCurrentCity();
@@ -182,20 +182,27 @@ public class Solution {
 			} else {
 				int capacity = v.capacity();
 				for (Integer i : action_task_list.get(v)) {
-					if (i < task_list.size()) {  // pickup 
-						capacity -= task_list.get(i).weight;
-						for (City cp : cur_city.pathTo(task_list.get(i).pickupCity)) {
+					// Find the task corresponding to i in the task_list
+					Task task_of_i = null;
+					for (int j = 0; j < task_list.size(); j ++) {
+						if (task_list.get(j).id == i || task_list.get(j).id == (i % tasks_auctioned)) {
+							task_of_i = (task_list.get(j));
+						}
+					}
+					if (i < number_of_tasks) {  // pickup 
+						capacity -= task_of_i.weight;
+						for (City cp : cur_city.pathTo(task_of_i.pickupCity)) {
 							new_plan.appendMove(cp);
 						}
-						cur_city = task_list.get(i).pickupCity;
-						new_plan.appendPickup(task_list.get(i));
+						cur_city = task_of_i.pickupCity;
+						new_plan.appendPickup(task_of_i);
 					} else {  // Delivery
-						capacity += task_list.get(i % number_of_tasks).weight;
-						for (City cd : cur_city.pathTo(task_list.get(i % number_of_tasks).deliveryCity)) {
+						capacity += task_of_i.weight;
+						for (City cd : cur_city.pathTo(task_of_i.deliveryCity)) {
 							new_plan.appendMove(cd);
 						}
-						cur_city = task_list.get(i % number_of_tasks).deliveryCity;
-						new_plan.appendDelivery(task_list.get(i % number_of_tasks));
+						cur_city = task_of_i.deliveryCity;
+						new_plan.appendDelivery(task_of_i);
 					}
 					if (capacity < 0) {
 						return false;

@@ -16,7 +16,7 @@ import logist.task.TaskSet;
 import logist.topology.Topology;
 import logist.topology.Topology.City;
 
-public class AuctionMarginalAgent implements AuctionBehavior {
+public class AuctionRandom implements AuctionBehavior {
 	
 	private Topology topology;
 	private TaskDistribution distribution;
@@ -25,29 +25,19 @@ public class AuctionMarginalAgent implements AuctionBehavior {
 	private Vehicle vehicle;
 	private City currentCity;
 	private AgentBidder bidder;
-	private Solution currentSolution;
-	private Solution futureSolution;
-	private List<Task> task_list;
-	private int income = 0;
-	private int tasks_auctioned = 0;
-	
-	private long timeout_bid;
-    private long timeout_plan;
-    private long timeout_setup;
+	private long timeout_plan;
+	private long income = 0;
+	private int tasks_auctioned;
 
 	@Override
 	public void setup(Topology topology, TaskDistribution distribution, Agent agent) {
-		// TODO Auto-generated method stub
 		this.topology = topology;
 		this.distribution = distribution;
 		this.agent = agent;
 		this.vehicle = agent.vehicles().get(0);
 		this.currentCity = vehicle.homeCity();
-		
+
 		this.bidder = new AgentBidder(agent.vehicles());
-		this.task_list = new ArrayList<Task>();
-		
-		// Do we need this??
 		long seed = -9019554669489983951L * currentCity.hashCode() * agent.id();
 		this.random = new Random(seed);
 		
@@ -60,33 +50,23 @@ public class AuctionMarginalAgent implements AuctionBehavior {
             System.out.println("There was a problem loading the configuration file.");
         }
         
-        // Create initial solution with a empty task list
-        currentSolution = new Solution(agent.vehicles(), new ArrayList<Task>(), 0);
-        
-        // the setup method cannot last more than timeout_setup milliseconds
-        timeout_setup = ls.get(LogistSettings.TimeoutKey.SETUP);
-        // the setup method cannot last more than timeout_bid milliseconds
-        timeout_bid = ls.get(LogistSettings.TimeoutKey.BID);
         // the plan method cannot execute more than timeout_plan milliseconds
         timeout_plan = ls.get(LogistSettings.TimeoutKey.PLAN);
+        
 	}
 
 	@Override
 	public Long askPrice(Task task) {
 		tasks_auctioned++;
-		futureSolution = this.bidder.getNewBestPlan(task, (long) (timeout_bid * 0.95), task_list, agent.vehicles(), tasks_auctioned);
-		Long marginalCost = (long) (futureSolution.get_cost_of_solution() - currentSolution.get_cost_of_solution());
-		return marginalCost;
+		return (long) random.nextInt(1500) + 500;
 	}
 
 	@Override
 	public void auctionResult(Task lastTask, int lastWinner, Long[] lastOffers) {
-		System.out.println("Last winner was agent " + lastWinner + " with a bid of " + lastOffers[lastWinner]);
 		if (lastWinner == agent.id()) {
-			task_list.add(lastTask);
 			income += lastOffers[agent.id()];
-			currentSolution = futureSolution;
 		}
+		
 	}
 
 	@Override
