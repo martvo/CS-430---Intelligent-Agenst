@@ -1,0 +1,480 @@
+09:15:12.965 FINE | Run command: java -Xmx1024m -classpath \java_workspace\school\CourseIntelligentAgents\logist\logist.jar logist.LogistPlatform -o tournament\marginalVsMain\auction2-auction-random-auction-main-21.xml -a tournament\marginalVsMain\agents.xml config\auction2.xml auction-random auction-main-21
+09:15:13.073 CONFIG | Reading config\auction2.xml
+09:15:13.126 CONFIG | Reading config\settings_auction.xml
+09:15:13.173 CONFIG | Reading config\topology\the_netherlands.xml
+09:15:13.184 CONFIG | Reading tournament\marginalVsMain\agents.xml
+09:15:13.201 CONFIG | Reading config\settings_auction.xml
+09:15:13.204 CONFIG | Reading config\settings_auction.xml
+09:15:22.807 CONFIG | Initial cost = 13584.0
+09:15:22.807 CONFIG | The plan was generated in 9597 milliseconds.
+09:15:22.807 CONFIG | The best plan has a cost of: 4205.0! and is:
+09:15:22.807 CONFIG | [12, 17, 84, 84, 87, 184, 184, 42, 41, 112, 28, 142, 141, 128, 89, 75, 187, 117, 90, 189, 190, 6, 55, 155, 175, 106]
+09:15:22.807 CONFIG | [2, 1, 102, 101]
+09:15:32.406 CONFIG | Initial cost = 27847.0
+09:15:32.406 CONFIG | The plan was generated in 9599 milliseconds.
+09:15:32.406 CONFIG | The best plan has a cost of: 8667.5! and is:
+09:15:32.407 CONFIG | [12, 81, 84, 87, 84, 184, 41, 184, 42, 181, 141, 17, 28, 112, 25, 142, 28, 128, 128, 43, 143, 55, 155, 51, 125, 75, 187, 71, 117, 75, 175, 175, 1, 1, 171, 101, 101, 151, 39, 32, 2, 3, 132, 102, 29, 89, 103, 139, 90, 189, 92, 129, 97, 197, 16, 192, 6, 190, 116, 106]
+09:15:32.407 CONFIG | []
+09:15:42.002 CONFIG | Initial cost = 39011.5
+09:15:42.002 CONFIG | The plan was generated in 9596 milliseconds.
+09:15:42.002 CONFIG | The best plan has a cost of: 14140.5! and is:
+09:15:42.002 CONFIG | [16, 12, 89, 84, 84, 184, 184, 41, 141, 12, 112, 112, 28, 25, 55, 155, 55, 155, 125, 58, 158, 87, 128, 187, 71, 75, 175, 1, 171, 101, 29, 39, 99, 199, 129, 189, 96, 139, 90, 8, 190, 6, 116, 196, 106, 51, 31, 131, 151, 80, 108, 43, 143, 180, 1, 1, 3, 3, 103, 103, 32, 101, 101, 92, 97, 192, 28, 132, 17, 75, 197, 117, 42, 82, 128, 81, 182, 10, 181, 142, 25, 110, 2, 175, 52, 125, 152, 102, 18, 118]
+09:15:42.002 CONFIG | []
+09:15:42.002 CONFIG | Low bid is: 599
+09:15:51.516 CONFIG | Initial cost = 954.0
+09:15:51.516 CONFIG | The plan was generated in 9495 milliseconds.
+09:15:51.516 CONFIG | The best plan has a cost of: 954.0! and is:
+09:15:51.516 CONFIG | [0, 1]
+09:15:51.516 CONFIG | []
+09:16:01.011 CONFIG | Initial cost = 827.0
+09:16:01.011 CONFIG | The plan was generated in 9495 milliseconds.
+09:16:01.011 CONFIG | The best plan has a cost of: 827.0! and is:
+09:16:01.011 CONFIG | [0, 1]
+09:16:01.011 CONFIG | []
+09:16:01.011 CONFIG | Last winner was agent 1 with a bid of 599
+09:16:01.012 CONFIG | Won the task
+09:16:01.012 CONFIG | 
+09:16:10.506 CONFIG | Initial cost = 2695.0
+09:16:10.506 CONFIG | The plan was generated in 9495 milliseconds.
+09:16:10.506 CONFIG | The best plan has a cost of: 1724.0! and is:
+09:16:10.506 CONFIG | [1, 0, 2, 3]
+09:16:10.506 CONFIG | []
+09:16:20.001 CONFIG | Initial cost = 1382.5
+09:16:20.001 CONFIG | The plan was generated in 9495 milliseconds.
+09:16:20.001 CONFIG | The best plan has a cost of: 1382.5! and is:
+09:16:20.001 CONFIG | [1, 3]
+09:16:20.001 CONFIG | []
+09:16:20.001 CONFIG | Last winner was agent 1 with a bid of 600
+09:16:20.002 CONFIG | Won the task
+09:16:20.002 CONFIG | 
+09:16:29.496 CONFIG | Initial cost = 4173.5
+09:16:29.496 CONFIG | The plan was generated in 9495 milliseconds.
+09:16:29.496 CONFIG | The best plan has a cost of: 2328.0! and is:
+09:16:29.496 CONFIG | []
+09:16:29.496 CONFIG | [2, 0, 1, 5, 3, 4]
+09:16:38.991 CONFIG | Initial cost = 1420.0
+09:16:38.991 CONFIG | The plan was generated in 9495 milliseconds.
+09:16:38.991 CONFIG | The best plan has a cost of: 1224.5! and is:
+09:16:38.991 CONFIG | []
+09:16:38.991 CONFIG | [2, 5]
+09:16:38.991 CONFIG | Last winner was agent 1 with a bid of 602
+09:16:38.991 CONFIG | Won the task
+09:16:38.991 CONFIG | 
+09:16:48.486 CONFIG | Initial cost = 5598.5
+09:16:48.486 CONFIG | The plan was generated in 9495 milliseconds.
+09:16:48.486 CONFIG | The best plan has a cost of: 2497.5! and is:
+09:16:48.486 CONFIG | []
+09:16:48.486 CONFIG | [2, 0, 6, 1, 3, 4, 7, 5]
+09:16:57.981 CONFIG | Initial cost = 1298.0
+09:16:57.981 CONFIG | The plan was generated in 9495 milliseconds.
+09:16:57.981 CONFIG | The best plan has a cost of: 1214.5! and is:
+09:16:57.981 CONFIG | []
+09:16:57.981 CONFIG | [3, 7]
+09:16:57.981 CONFIG | Last winner was agent 1 with a bid of 607
+09:16:57.981 CONFIG | Won the task
+09:16:57.981 CONFIG | 
+09:17:07.476 CONFIG | Initial cost = 6813.0
+09:17:07.476 CONFIG | The plan was generated in 9495 milliseconds.
+09:17:07.476 CONFIG | The best plan has a cost of: 2613.0! and is:
+09:17:07.476 CONFIG | [1, 0, 3, 5, 6, 8]
+09:17:07.476 CONFIG | [2, 4, 9, 7]
+09:17:16.971 CONFIG | Initial cost = 539.5
+09:17:16.971 CONFIG | The plan was generated in 9495 milliseconds.
+09:17:16.971 CONFIG | The best plan has a cost of: 456.0! and is:
+09:17:16.971 CONFIG | []
+09:17:16.971 CONFIG | [4, 9]
+09:17:16.972 CONFIG | Last winner was agent 0 with a bid of 555
+09:17:16.972 CONFIG | Lost the task
+09:17:16.972 CONFIG | 
+09:17:26.466 CONFIG | Initial cost = 7579.5
+09:17:26.466 CONFIG | The plan was generated in 9495 milliseconds.
+09:17:26.466 CONFIG | The best plan has a cost of: 3636.0! and is:
+09:17:26.466 CONFIG | [0, 3, 2, 6, 8, 1, 5, 11, 7, 9]
+09:17:26.466 CONFIG | []
+09:17:35.961 CONFIG | Initial cost = 1550.5
+09:17:35.961 CONFIG | The plan was generated in 9495 milliseconds.
+09:17:35.961 CONFIG | The best plan has a cost of: 1550.5! and is:
+09:17:35.961 CONFIG | [5, 11]
+09:17:35.961 CONFIG | []
+09:17:35.961 CONFIG | Last winner was agent 1 with a bid of 718
+09:17:35.961 CONFIG | Won the task
+09:17:35.961 CONFIG | 
+09:17:45.456 CONFIG | Initial cost = 8566.0
+09:17:45.456 CONFIG | The plan was generated in 9495 milliseconds.
+09:17:45.456 CONFIG | The best plan has a cost of: 2825.0! and is:
+09:17:45.456 CONFIG | []
+09:17:45.456 CONFIG | [2, 5, 0, 9, 1, 7, 6, 13, 3, 8, 10, 12]
+09:17:54.951 CONFIG | Initial cost = 744.5
+09:17:54.951 CONFIG | The plan was generated in 9495 milliseconds.
+09:17:54.951 CONFIG | The best plan has a cost of: 376.0! and is:
+09:17:54.951 CONFIG | []
+09:17:54.951 CONFIG | [6, 13]
+09:17:54.952 CONFIG | Last winner was agent 1 with a bid of 615
+09:17:54.952 CONFIG | Won the task
+09:17:54.952 CONFIG | 
+09:18:04.446 CONFIG | Initial cost = 9691.5
+09:18:04.446 CONFIG | The plan was generated in 9495 milliseconds.
+09:18:04.446 CONFIG | The best plan has a cost of: 3956.5! and is:
+09:18:04.446 CONFIG | [7, 0, 3, 8, 6, 14, 2, 10, 1, 15, 5, 9, 11, 13]
+09:18:04.446 CONFIG | []
+09:18:13.941 CONFIG | Initial cost = 814.0
+09:18:13.941 CONFIG | The plan was generated in 9495 milliseconds.
+09:18:13.941 CONFIG | The best plan has a cost of: 814.0! and is:
+09:18:13.941 CONFIG | [7, 15]
+09:18:13.941 CONFIG | []
+09:18:13.941 CONFIG | Last winner was agent 1 with a bid of 1128
+09:18:13.941 CONFIG | Won the task
+09:18:13.941 CONFIG | 
+09:18:23.436 CONFIG | Initial cost = 10377.5
+09:18:23.436 CONFIG | The plan was generated in 9495 milliseconds.
+09:18:23.436 CONFIG | The best plan has a cost of: 3479.0! and is:
+09:18:23.436 CONFIG | [7, 1, 0, 9, 6, 15, 3, 16, 5, 12, 10, 14]
+09:18:23.436 CONFIG | [8, 2, 17, 11]
+09:18:32.931 CONFIG | Initial cost = 1047.0
+09:18:32.931 CONFIG | The plan was generated in 9495 milliseconds.
+09:18:32.931 CONFIG | The best plan has a cost of: 851.5! and is:
+09:18:32.931 CONFIG | []
+09:18:32.931 CONFIG | [8, 17]
+09:18:32.931 CONFIG | Last winner was agent 0 with a bid of 501
+09:18:32.931 CONFIG | Lost the task
+09:18:32.931 CONFIG | 
+09:18:42.426 CONFIG | Initial cost = 10750.5
+09:18:42.426 CONFIG | The plan was generated in 9495 milliseconds.
+09:18:42.426 CONFIG | The best plan has a cost of: 3366.5! and is:
+09:18:42.426 CONFIG | [7, 1, 0, 10, 6, 16, 3, 17, 5, 13, 11, 15]
+09:18:42.426 CONFIG | [2, 9, 12, 19]
+09:18:51.921 CONFIG | Initial cost = 1420.0
+09:18:51.921 CONFIG | The plan was generated in 9495 milliseconds.
+09:18:51.921 CONFIG | The best plan has a cost of: 1224.5! and is:
+09:18:51.921 CONFIG | []
+09:18:51.921 CONFIG | [9, 19]
+09:18:51.921 CONFIG | Last winner was agent 1 with a bid of 1058
+09:18:51.921 CONFIG | Won the task
+09:18:51.921 CONFIG | 
+09:19:01.416 CONFIG | Initial cost = 11912.0
+09:19:01.416 CONFIG | The plan was generated in 9495 milliseconds.
+09:19:01.416 CONFIG | The best plan has a cost of: 4405.0! and is:
+09:19:01.416 CONFIG | [7, 0, 3, 10, 11, 6, 17, 1, 21, 18, 5, 16, 14, 12]
+09:19:01.416 CONFIG | [9, 2, 20, 13]
+09:19:10.911 CONFIG | Initial cost = 1204.0
+09:19:10.911 CONFIG | The plan was generated in 9495 milliseconds.
+09:19:10.911 CONFIG | The best plan has a cost of: 835.5! and is:
+09:19:10.911 CONFIG | []
+09:19:10.911 CONFIG | [10, 21]
+09:19:10.911 CONFIG | Last winner was agent 0 with a bid of 517
+09:19:10.911 CONFIG | Lost the task
+09:19:10.911 CONFIG | 
+09:19:20.406 CONFIG | Initial cost = 11601.5
+09:19:20.406 CONFIG | The plan was generated in 9495 milliseconds.
+09:19:20.406 CONFIG | The best plan has a cost of: 4060.0! and is:
+09:19:20.406 CONFIG | [7, 0, 11, 3, 12, 6, 18, 1, 19, 5, 23, 13, 17, 15]
+09:19:20.407 CONFIG | [2, 9, 14, 21]
+09:19:29.901 CONFIG | Initial cost = 724.0
+09:19:29.901 CONFIG | The plan was generated in 9495 milliseconds.
+09:19:29.901 CONFIG | The best plan has a cost of: 724.0! and is:
+09:19:29.901 CONFIG | [11, 23]
+09:19:29.901 CONFIG | []
+09:19:29.901 CONFIG | Last winner was agent 1 with a bid of 1224
+09:19:29.901 CONFIG | Won the task
+09:19:29.901 CONFIG | 
+09:19:39.396 CONFIG | Initial cost = 12689.5
+09:19:39.396 CONFIG | The plan was generated in 9495 milliseconds.
+09:19:39.396 CONFIG | The best plan has a cost of: 4044.0! and is:
+09:19:39.396 CONFIG | [7, 1, 12, 11, 24, 20, 5, 3, 25, 16, 14, 18]
+09:19:39.396 CONFIG | [2, 9, 0, 15, 22, 6, 13, 19]
+09:19:48.891 CONFIG | Initial cost = 528.0
+09:19:48.891 CONFIG | The plan was generated in 9495 milliseconds.
+09:19:48.891 CONFIG | The best plan has a cost of: 528.0! and is:
+09:19:48.891 CONFIG | [12, 25]
+09:19:48.891 CONFIG | []
+09:19:48.891 CONFIG | Last winner was agent 1 with a bid of 930
+09:19:48.891 CONFIG | Won the task
+09:19:48.891 CONFIG | 
+09:19:58.386 CONFIG | Initial cost = 13948.5
+09:19:58.386 CONFIG | The plan was generated in 9495 milliseconds.
+09:19:58.386 CONFIG | The best plan has a cost of: 4897.5! and is:
+09:19:58.386 CONFIG | [7, 11, 0, 25, 21, 9, 2, 16, 23, 1, 12, 3, 26, 14, 6, 20, 13, 5, 27, 19, 15, 17]
+09:19:58.386 CONFIG | []
+09:20:07.881 CONFIG | Initial cost = 900.5
+09:20:07.881 CONFIG | The plan was generated in 9495 milliseconds.
+09:20:07.881 CONFIG | The best plan has a cost of: 900.5! and is:
+09:20:07.881 CONFIG | [13, 27]
+09:20:07.881 CONFIG | []
+09:20:07.881 CONFIG | Last winner was agent 1 with a bid of 1581
+09:20:07.881 CONFIG | Won the task
+09:20:07.881 CONFIG | 
+09:20:17.376 CONFIG | Initial cost = 14936.0
+09:20:17.376 CONFIG | The plan was generated in 9495 milliseconds.
+09:20:17.376 CONFIG | The best plan has a cost of: 5092.0! and is:
+09:20:17.376 CONFIG | [7, 11, 14, 26, 22, 29]
+09:20:17.376 CONFIG | [2, 9, 0, 17, 12, 15, 27, 6, 3, 21, 13, 24, 1, 5, 28, 20, 18, 16]
+09:20:26.871 CONFIG | Initial cost = 905.0
+09:20:26.871 CONFIG | The plan was generated in 9495 milliseconds.
+09:20:26.871 CONFIG | The best plan has a cost of: 905.0! and is:
+09:20:26.871 CONFIG | [14, 29]
+09:20:26.871 CONFIG | []
+09:20:26.872 CONFIG | 
+09:20:26.872 CONFIG | 
+09:20:26.872 CONFIG | 
+09:20:26.872 CONFIG | 
+09:20:26.872 CONFIG | The income for this auction was: 2585
+09:20:46.062 CONFIG | Initial cost = 2334.5
+09:20:46.062 CONFIG | The plan was generated in 19191 milliseconds.
+09:20:46.062 CONFIG | The best plan has a cost of: 2035.0! and is:
+09:20:46.062 CONFIG | []
+09:20:46.062 CONFIG | [14, 29, 8, 4, 10, 23, 19, 25]
+09:20:46.064 CONFIG | Last winner was agent 0 with a bid of 1012
+09:20:46.064 CONFIG | Lost the task
+09:20:46.064 CONFIG | 
+09:20:46.064 CONFIG | 
+09:20:46.064 CONFIG | 
+09:20:46.064 CONFIG | 
+09:20:46.064 CONFIG | 
+09:20:46.064 CONFIG | The income for this auction was: 9662
+09:21:05.255 CONFIG | Initial cost = 13948.5
+09:21:05.255 CONFIG | The plan was generated in 19191 milliseconds.
+09:21:05.255 CONFIG | The best plan has a cost of: 5044.0! and is:
+09:21:05.255 CONFIG | [1, 12, 0, 3, 15, 6, 27, 16, 18, 2, 9, 21, 17, 24, 13, 7, 11, 26, 5, 22, 28, 20]
+09:21:05.255 CONFIG | []
+09:21:05.259 CONFIG | Wrote tournament\marginalVsMain\auction2-auction-random-auction-main-21.xml
+09:21:05.330 INFO | LogistPlatform finished successfully!
+09:21:05.334 FINE | Run command: java -Xmx1024m -classpath \java_workspace\school\CourseIntelligentAgents\logist\logist.jar logist.LogistPlatform -o tournament\marginalVsMain\auction2-auction-main-21-auction-random.xml -a tournament\marginalVsMain\agents.xml config\auction2.xml auction-main-21 auction-random
+09:21:05.446 CONFIG | Reading config\auction2.xml
+09:21:05.504 CONFIG | Reading config\settings_auction.xml
+09:21:05.561 CONFIG | Reading config\topology\the_netherlands.xml
+09:21:05.573 CONFIG | Reading tournament\marginalVsMain\agents.xml
+09:21:05.592 CONFIG | Reading config\settings_auction.xml
+09:21:15.196 CONFIG | Initial cost = 13584.0
+09:21:15.196 CONFIG | The plan was generated in 9597 milliseconds.
+09:21:15.196 CONFIG | The best plan has a cost of: 4205.0! and is:
+09:21:15.196 CONFIG | [12, 17, 84, 84, 87, 184, 184, 42, 41, 112, 28, 142, 141, 128, 89, 75, 187, 117, 90, 189, 190, 6, 55, 155, 175, 106]
+09:21:15.196 CONFIG | [2, 1, 102, 101]
+09:21:24.792 CONFIG | Initial cost = 27847.0
+09:21:24.792 CONFIG | The plan was generated in 9596 milliseconds.
+09:21:24.792 CONFIG | The best plan has a cost of: 10301.0! and is:
+09:21:24.792 CONFIG | [12, 17, 112, 28, 28, 25, 29, 128, 84, 128, 84, 184, 184, 43, 143, 55, 155, 125, 3, 2, 103, 71, 117, 75, 75, 175, 175, 1, 102, 171, 101, 89, 39, 189, 139, 90, 129, 51, 1, 190, 6, 101, 151, 81, 87, 41, 42, 142, 141, 181, 97, 197, 187, 92, 32, 192, 132, 16, 116, 106]
+09:21:24.792 CONFIG | []
+09:21:34.388 CONFIG | Initial cost = 39011.5
+09:21:34.388 CONFIG | The plan was generated in 9596 milliseconds.
+09:21:34.388 CONFIG | The best plan has a cost of: 14046.0! and is:
+09:21:34.388 CONFIG | [12, 12, 18, 17, 87, 118, 84, 84, 184, 184, 41, 141, 28, 112, 112, 25, 28, 128, 128, 32, 55, 155, 55, 155, 125, 187, 75, 75, 117, 175, 175, 3, 3, 2, 132, 102, 1, 1, 101, 16, 101, 103, 103, 39, 96, 90, 99, 199, 139, 8, 190, 6, 196, 116, 106, 58, 52, 81, 108, 158, 89, 71, 189, 92, 181, 171, 192, 25, 152, 80, 82, 182, 1, 180, 31, 10, 101, 131, 29, 110, 125, 51, 129, 97, 197, 42, 43, 151, 142, 143]
+09:21:34.388 CONFIG | []
+09:21:34.388 CONFIG | Low bid is: 634
+09:21:34.390 CONFIG | Reading config\settings_auction.xml
+09:21:43.905 CONFIG | Initial cost = 1179.5
+09:21:43.905 CONFIG | The plan was generated in 9495 milliseconds.
+09:21:43.905 CONFIG | The best plan has a cost of: 895.0! and is:
+09:21:43.905 CONFIG | []
+09:21:43.905 CONFIG | [0, 1]
+09:21:53.400 CONFIG | Initial cost = 827.0
+09:21:53.400 CONFIG | The plan was generated in 9495 milliseconds.
+09:21:53.400 CONFIG | The best plan has a cost of: 827.0! and is:
+09:21:53.400 CONFIG | [0, 1]
+09:21:53.400 CONFIG | []
+09:21:53.401 CONFIG | Last winner was agent 0 with a bid of 634
+09:21:53.401 CONFIG | Won the task
+09:21:53.401 CONFIG | 
+09:22:02.896 CONFIG | Initial cost = 2920.5
+09:22:02.896 CONFIG | The plan was generated in 9495 milliseconds.
+09:22:02.896 CONFIG | The best plan has a cost of: 1936.5! and is:
+09:22:02.896 CONFIG | []
+09:22:02.896 CONFIG | [0, 1, 2, 3]
+09:22:12.391 CONFIG | Initial cost = 1382.5
+09:22:12.391 CONFIG | The plan was generated in 9495 milliseconds.
+09:22:12.391 CONFIG | The best plan has a cost of: 1382.5! and is:
+09:22:12.391 CONFIG | [1, 3]
+09:22:12.391 CONFIG | []
+09:22:12.392 CONFIG | Last winner was agent 0 with a bid of 635
+09:22:12.392 CONFIG | Won the task
+09:22:12.392 CONFIG | 
+09:22:21.886 CONFIG | Initial cost = 4399.0
+09:22:21.886 CONFIG | The plan was generated in 9495 milliseconds.
+09:22:21.886 CONFIG | The best plan has a cost of: 2779.0! and is:
+09:22:21.886 CONFIG | [2, 0, 5, 1, 3, 4]
+09:22:21.886 CONFIG | []
+09:22:31.381 CONFIG | Initial cost = 1420.0
+09:22:31.381 CONFIG | The plan was generated in 9495 milliseconds.
+09:22:31.381 CONFIG | The best plan has a cost of: 1224.5! and is:
+09:22:31.381 CONFIG | []
+09:22:31.381 CONFIG | [2, 5]
+09:22:31.381 CONFIG | Last winner was agent 0 with a bid of 638
+09:22:31.381 CONFIG | Won the task
+09:22:31.382 CONFIG | 
+09:22:40.876 CONFIG | Initial cost = 5824.0
+09:22:40.876 CONFIG | The plan was generated in 9495 milliseconds.
+09:22:40.876 CONFIG | The best plan has a cost of: 3134.0! and is:
+09:22:40.876 CONFIG | []
+09:22:40.876 CONFIG | [2, 0, 6, 1, 3, 4, 7, 5]
+09:22:50.371 CONFIG | Initial cost = 1298.0
+09:22:50.371 CONFIG | The plan was generated in 9495 milliseconds.
+09:22:50.371 CONFIG | The best plan has a cost of: 1214.5! and is:
+09:22:50.371 CONFIG | []
+09:22:50.371 CONFIG | [3, 7]
+09:22:50.371 CONFIG | Last winner was agent 0 with a bid of 642
+09:22:50.371 CONFIG | Won the task
+09:22:50.371 CONFIG | 
+09:22:59.866 CONFIG | Initial cost = 7038.5
+09:22:59.866 CONFIG | The plan was generated in 9495 milliseconds.
+09:22:59.866 CONFIG | The best plan has a cost of: 3235.0! and is:
+09:22:59.866 CONFIG | [4, 9, 2, 3, 0, 7, 1, 5, 8, 6]
+09:22:59.866 CONFIG | []
+09:23:09.361 CONFIG | Initial cost = 539.5
+09:23:09.361 CONFIG | The plan was generated in 9495 milliseconds.
+09:23:09.361 CONFIG | The best plan has a cost of: 456.0! and is:
+09:23:09.361 CONFIG | []
+09:23:09.361 CONFIG | [4, 9]
+09:23:09.361 CONFIG | Last winner was agent 1 with a bid of 555
+09:23:09.361 CONFIG | Lost the task
+09:23:09.361 CONFIG | 
+09:23:18.856 CONFIG | Initial cost = 7805.0
+09:23:18.856 CONFIG | The plan was generated in 9495 milliseconds.
+09:23:18.856 CONFIG | The best plan has a cost of: 3648.0! and is:
+09:23:18.856 CONFIG | [2, 3, 0, 8, 1, 6, 5, 11, 9, 7]
+09:23:18.856 CONFIG | []
+09:23:28.351 CONFIG | Initial cost = 1550.5
+09:23:28.351 CONFIG | The plan was generated in 9495 milliseconds.
+09:23:28.351 CONFIG | The best plan has a cost of: 1550.5! and is:
+09:23:28.351 CONFIG | [5, 11]
+09:23:28.351 CONFIG | []
+09:23:28.351 CONFIG | Last winner was agent 0 with a bid of 708
+09:23:28.351 CONFIG | Won the task
+09:23:28.351 CONFIG | 
+09:23:37.846 CONFIG | Initial cost = 8791.5
+09:23:37.846 CONFIG | The plan was generated in 9495 milliseconds.
+09:23:37.846 CONFIG | The best plan has a cost of: 3866.5! and is:
+09:23:37.846 CONFIG | [6, 2, 5, 13, 3, 9, 1, 12, 10, 8]
+09:23:37.846 CONFIG | [0, 7]
+09:23:47.341 CONFIG | Initial cost = 744.5
+09:23:47.341 CONFIG | The plan was generated in 9495 milliseconds.
+09:23:47.341 CONFIG | The best plan has a cost of: 376.0! and is:
+09:23:47.341 CONFIG | []
+09:23:47.341 CONFIG | [6, 13]
+09:23:47.341 CONFIG | Last winner was agent 0 with a bid of 661
+09:23:47.341 CONFIG | Won the task
+09:23:47.341 CONFIG | 
+09:23:56.836 CONFIG | Initial cost = 9917.0
+09:23:56.836 CONFIG | The plan was generated in 9495 milliseconds.
+09:23:56.836 CONFIG | The best plan has a cost of: 3746.5! and is:
+09:23:56.836 CONFIG | []
+09:23:56.836 CONFIG | [0, 3, 2, 8, 6, 14, 10, 1, 7, 15, 5, 13, 9, 11]
+09:24:06.331 CONFIG | Initial cost = 814.0
+09:24:06.331 CONFIG | The plan was generated in 9495 milliseconds.
+09:24:06.331 CONFIG | The best plan has a cost of: 814.0! and is:
+09:24:06.331 CONFIG | [7, 15]
+09:24:06.331 CONFIG | []
+09:24:06.331 CONFIG | Last winner was agent 0 with a bid of 842
+09:24:06.331 CONFIG | Won the task
+09:24:06.331 CONFIG | 
+09:24:15.826 CONFIG | Initial cost = 10603.0
+09:24:15.826 CONFIG | The plan was generated in 9495 milliseconds.
+09:24:15.826 CONFIG | The best plan has a cost of: 4666.5! and is:
+09:24:15.826 CONFIG | [7, 1, 3, 16, 5, 14, 12, 10, 8, 2, 0, 11, 17, 6, 9, 15]
+09:24:15.826 CONFIG | []
+09:24:25.321 CONFIG | Initial cost = 1047.0
+09:24:25.321 CONFIG | The plan was generated in 9495 milliseconds.
+09:24:25.321 CONFIG | The best plan has a cost of: 851.5! and is:
+09:24:25.321 CONFIG | []
+09:24:25.321 CONFIG | [8, 17]
+09:24:25.321 CONFIG | Last winner was agent 1 with a bid of 501
+09:24:25.321 CONFIG | Lost the task
+09:24:25.321 CONFIG | 
+09:24:34.816 CONFIG | Initial cost = 10976.0
+09:24:34.816 CONFIG | The plan was generated in 9495 milliseconds.
+09:24:34.816 CONFIG | The best plan has a cost of: 4397.5! and is:
+09:24:34.816 CONFIG | [7, 1, 0, 10, 6, 16, 3, 17, 5, 13, 15, 11, 2, 9, 12, 19]
+09:24:34.816 CONFIG | []
+09:24:44.311 CONFIG | Initial cost = 1420.0
+09:24:44.311 CONFIG | The plan was generated in 9495 milliseconds.
+09:24:44.311 CONFIG | The best plan has a cost of: 1224.5! and is:
+09:24:44.311 CONFIG | []
+09:24:44.311 CONFIG | [9, 19]
+09:24:44.311 CONFIG | Last winner was agent 0 with a bid of 1299
+09:24:44.311 CONFIG | Won the task
+09:24:44.311 CONFIG | 
+09:24:53.806 CONFIG | Initial cost = 12137.5
+09:24:53.806 CONFIG | The plan was generated in 9495 milliseconds.
+09:24:53.806 CONFIG | The best plan has a cost of: 4833.5! and is:
+09:24:53.806 CONFIG | [6, 10, 17, 2, 9, 21, 0, 11, 7, 13, 20, 1, 5, 18, 3, 14, 16, 12]
+09:24:53.806 CONFIG | []
+09:25:03.301 CONFIG | Initial cost = 1204.0
+09:25:03.301 CONFIG | The plan was generated in 9495 milliseconds.
+09:25:03.301 CONFIG | The best plan has a cost of: 835.5! and is:
+09:25:03.301 CONFIG | []
+09:25:03.301 CONFIG | [10, 21]
+09:25:03.301 CONFIG | Last winner was agent 1 with a bid of 517
+09:25:03.301 CONFIG | Lost the task
+09:25:03.301 CONFIG | 
+09:25:12.796 CONFIG | Initial cost = 11827.0
+09:25:12.796 CONFIG | The plan was generated in 9495 milliseconds.
+09:25:12.796 CONFIG | The best plan has a cost of: 4234.0! and is:
+09:25:12.796 CONFIG | [2, 9, 14, 7, 21, 1, 0, 12, 6, 18, 3, 11, 23, 19, 5, 17, 13, 15]
+09:25:12.796 CONFIG | []
+09:25:22.291 CONFIG | Initial cost = 724.0
+09:25:22.291 CONFIG | The plan was generated in 9495 milliseconds.
+09:25:22.291 CONFIG | The best plan has a cost of: 724.0! and is:
+09:25:22.291 CONFIG | [11, 23]
+09:25:22.291 CONFIG | []
+09:25:22.291 CONFIG | Last winner was agent 0 with a bid of 858
+09:25:22.291 CONFIG | Won the task
+09:25:22.291 CONFIG | 
+09:25:31.786 CONFIG | Initial cost = 12915.0
+09:25:31.786 CONFIG | The plan was generated in 9495 milliseconds.
+09:25:31.786 CONFIG | The best plan has a cost of: 4611.5! and is:
+09:25:31.786 CONFIG | [7, 0, 11, 13, 6, 19, 24, 20, 2, 9, 5, 15, 22, 1, 12, 3, 25, 18, 16, 14]
+09:25:31.786 CONFIG | []
+09:25:41.281 CONFIG | Initial cost = 528.0
+09:25:41.281 CONFIG | The plan was generated in 9495 milliseconds.
+09:25:41.281 CONFIG | The best plan has a cost of: 528.0! and is:
+09:25:41.281 CONFIG | [12, 25]
+09:25:41.281 CONFIG | []
+09:25:41.281 CONFIG | Last winner was agent 0 with a bid of 1164
+09:25:41.281 CONFIG | Won the task
+09:25:41.281 CONFIG | 
+09:25:50.776 CONFIG | Initial cost = 14174.0
+09:25:50.776 CONFIG | The plan was generated in 9495 milliseconds.
+09:25:50.776 CONFIG | The best plan has a cost of: 5431.0! and is:
+09:25:50.776 CONFIG | [13, 12, 0, 26, 6, 14, 27, 9, 2, 20, 23, 7, 11, 21, 5, 25, 3, 16, 1, 15, 19, 17]
+09:25:50.776 CONFIG | []
+09:26:00.271 CONFIG | Initial cost = 900.5
+09:26:00.271 CONFIG | The plan was generated in 9495 milliseconds.
+09:26:00.271 CONFIG | The best plan has a cost of: 900.5! and is:
+09:26:00.271 CONFIG | [13, 27]
+09:26:00.271 CONFIG | []
+09:26:00.271 CONFIG | Last winner was agent 0 with a bid of 1564
+09:26:00.271 CONFIG | Won the task
+09:26:00.271 CONFIG | 
+09:26:09.766 CONFIG | Initial cost = 15161.5
+09:26:09.766 CONFIG | The plan was generated in 9495 milliseconds.
+09:26:09.766 CONFIG | The best plan has a cost of: 5099.5! and is:
+09:26:09.766 CONFIG | [6, 21, 11, 0, 12, 15, 27, 9, 2, 26, 7, 24, 1, 17, 13, 3, 22, 5, 28, 20, 18, 16]
+09:26:09.766 CONFIG | [14, 29]
+09:26:19.261 CONFIG | Initial cost = 905.0
+09:26:19.261 CONFIG | The plan was generated in 9495 milliseconds.
+09:26:19.261 CONFIG | The best plan has a cost of: 905.0! and is:
+09:26:19.261 CONFIG | [14, 29]
+09:26:19.261 CONFIG | []
+09:26:19.262 CONFIG | Last winner was agent 1 with a bid of 1012
+09:26:19.262 CONFIG | Lost the task
+09:26:19.262 CONFIG | 
+09:26:19.262 CONFIG | 
+09:26:19.262 CONFIG | 
+09:26:19.262 CONFIG | 
+09:26:19.262 CONFIG | 
+09:26:19.262 CONFIG | The income for this auction was: 9645
+09:26:38.452 CONFIG | Initial cost = 14174.0
+09:26:38.452 CONFIG | The plan was generated in 19191 milliseconds.
+09:26:38.452 CONFIG | The best plan has a cost of: 4467.0! and is:
+09:26:38.452 CONFIG | []
+09:26:38.452 CONFIG | [0, 11, 12, 15, 27, 6, 21, 26, 9, 2, 3, 24, 13, 1, 17, 7, 22, 5, 28, 20, 18, 16]
+09:26:38.454 CONFIG | 
+09:26:38.454 CONFIG | 
+09:26:38.454 CONFIG | 
+09:26:38.454 CONFIG | 
+09:26:38.454 CONFIG | The income for this auction was: 2585
+09:26:57.645 CONFIG | Initial cost = 2545.0
+09:26:57.645 CONFIG | The plan was generated in 19191 milliseconds.
+09:26:57.645 CONFIG | The best plan has a cost of: 1749.5! and is:
+09:26:57.645 CONFIG | []
+09:26:57.645 CONFIG | [8, 4, 10, 23, 19, 14, 25, 29]
+09:26:57.649 CONFIG | Wrote tournament\marginalVsMain\auction2-auction-main-21-auction-random.xml
+09:26:57.700 INFO | LogistPlatform finished successfully!

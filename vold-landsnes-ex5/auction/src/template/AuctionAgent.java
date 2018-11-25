@@ -1,11 +1,8 @@
 package template;
 
-import java.awt.Label;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import javax.management.timer.TimerNotification;
 
 import logist.LogistSettings;
 import logist.agent.Agent;
