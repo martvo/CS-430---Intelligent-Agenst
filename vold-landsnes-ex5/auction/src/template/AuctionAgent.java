@@ -168,6 +168,8 @@ public class AuctionAgent implements AuctionBehavior {
 					lowers_bid_that_is_not_ours = lastOffers[i];
 				}
 			}
+			
+			// want to increas the bid 
 			extra_bid += learning_rate * (lowers_bid_that_is_not_ours - lastOffers[lastWinner]);
 		} else {
 			System.out.println("Lost the task");
@@ -179,7 +181,9 @@ public class AuctionAgent implements AuctionBehavior {
 					our_bid = lastOffers[i];
 				}
 			}
-			extra_bid += learning_rate * (our_bid - lastOffers[lastWinner]);
+			
+			// want to decreas the bid
+			extra_bid += learning_rate * (lastOffers[lastWinner] - our_bid);
 		}
 		System.out.println();
 	}
