@@ -18,18 +18,27 @@
 			</tasks>
 			<events>
 				<event id="0" time="0" vehicle="Vehicle 1" pickup="4"/>
-				<event id="1" time="299999985" vehicle="Vehicle 1" move="Sion"/>
-				<event id="2" time="1966666540" vehicle="Vehicle 1" pickup="2"/>
+				<event id="1" time="299999989" vehicle="Vehicle 1" move="Sion"/>
+				<event id="2" time="1966666551" vehicle="Vehicle 1" pickup="2"/>
+				<event id="3" time="2266666529" vehicle="Vehicle 1" pickup="5"/>
+				<event id="4" time="2566666512" vehicle="Vehicle 1" move="Thun"/>
+				<event id="5" time="3899999765" vehicle="Vehicle 1" move="Bern"/>
+				<event id="6" time="4344444182" vehicle="Vehicle 1" move="Basel"/>
+				<event id="7" time="5899999636" vehicle="Vehicle 1" deliver="5"/>
+				<event id="8" time="6199999619" vehicle="Vehicle 1" pickup="3"/>
+				<event id="9" time="6499999600" vehicle="Vehicle 1" move="Zürich"/>
+				<event id="10" time="7833332846" vehicle="Vehicle 1" pickup="1"/>
+				<event id="11" time="8133332828" vehicle="Vehicle 1" move="St-Gallen"/>
 			</events>
 		</round>
 	</rounds>
 	<statistics>
 		<stat rank="1" agent="deliberative-main">
 			<total-tasks value="6"/>
-			<total-distance value="150.0"/>
-			<total-cost value="750"/>
-			<total-reward value="0"/>
-			<total-profit value="-750"/>
+			<total-distance value="690.0"/>
+			<total-cost value="3450"/>
+			<total-reward value="46991"/>
+			<total-profit value="43541"/>
 		</stat>
 	</statistics>
 </history>
