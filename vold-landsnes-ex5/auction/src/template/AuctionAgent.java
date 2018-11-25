@@ -75,7 +75,7 @@ public class AuctionAgent implements AuctionBehavior {
 		this.bidder = new AgentBidder(agent.vehicles());
 		this.task_list = new ArrayList<Task>();
 		
-		long seed = -9019554669489983951L * current_city.hashCode() * agent.id();
+		long seed = 12345;
 		this.random = new Random(seed);
         
         // Create initial solution with a empty task list
@@ -108,8 +108,8 @@ public class AuctionAgent implements AuctionBehavior {
         		possible_tasks_in_topology.add(new Task(task_id++, from_city, to_city, 
         				distribution.reward(from_city, to_city), distribution.weight(from_city, to_city)));
         	}
-        }
-        int number_of_random_tasks = 10;
+        } 
+        int number_of_random_tasks = 15;
         int number_of_samples = 3;
         List<Task> task_to_estimate = new ArrayList<Task>();
         for (int i = 0; i < number_of_samples; i++) {
@@ -169,7 +169,7 @@ public class AuctionAgent implements AuctionBehavior {
 				}
 			}
 			
-			// want to increas the bid 
+			// want to increase the bid 
 			extra_bid += learning_rate * (lowers_bid_that_is_not_ours - lastOffers[lastWinner]);
 		} else {
 			System.out.println("Lost the task");
@@ -182,7 +182,7 @@ public class AuctionAgent implements AuctionBehavior {
 				}
 			}
 			
-			// want to decreas the bid
+			// want to decrease the bid
 			extra_bid += learning_rate * (lastOffers[lastWinner] - our_bid);
 		}
 		System.out.println();

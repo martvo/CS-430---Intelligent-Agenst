@@ -38,7 +38,7 @@ public class AuctionRandom implements AuctionBehavior {
 		this.currentCity = vehicle.homeCity();
 
 		this.bidder = new AgentBidder(agent.vehicles());
-		long seed = -9019554669489983951L * currentCity.hashCode() * agent.id();
+		long seed = 12345;
 		this.random = new Random(seed);
 		
 		// this code is used to get the timeouts

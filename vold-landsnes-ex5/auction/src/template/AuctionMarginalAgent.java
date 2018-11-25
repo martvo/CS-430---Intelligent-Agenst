@@ -48,7 +48,7 @@ public class AuctionMarginalAgent implements AuctionBehavior {
 		this.task_list = new ArrayList<Task>();
 		
 		// Do we need this??
-		long seed = -9019554669489983951L * currentCity.hashCode() * agent.id();
+		long seed = 12345;
 		this.random = new Random(seed);
 		
 		// this code is used to get the timeouts

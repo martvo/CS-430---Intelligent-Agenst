@@ -23,8 +23,8 @@
 	
 	<!-- Timeouts -->
 	<set timeout-setup="30000" />
-	<set timeout-plan="10000" />
-	<set timeout-bid="10000" />
+	<set timeout-plan="20000" />
+	<set timeout-bid="20000" />
 	
 	<!-- Flags -->
 	<set flag-show-ui="true" />
