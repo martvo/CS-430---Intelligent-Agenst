@@ -131,6 +131,7 @@ public class AuctionAgent implements AuctionBehavior {
 	@Override
 	public Long askPrice(Task task) {
 		// Our future plan
+		tasks_auctioned++;
 		future_solution = this.bidder.getNewBestPlan(task, (long) (timeout_bid * 0.47), task_list, agent.vehicles(), tasks_auctioned);
 		double marginalCost = Math.max(future_solution.get_cost_of_solution() - current_solution.get_cost_of_solution(), 0);
 		
@@ -144,13 +145,12 @@ public class AuctionAgent implements AuctionBehavior {
 		// Combine the initial bid with the marginal bid
 		double weight = weight_function(tasks_auctioned);
 		long bid = (long) (weight * initial_low_bid + (1 - weight) * marginal_bid);
-		tasks_auctioned++;
 		return bid;
 	}
 	
 	
 	public double weight_function(int interation) {
-		return 1 / (1 + Math.exp(interation - 7));
+		return 1 / (1 + Math.exp(interation - 8));
 	}
 
 	
